@@ -264,6 +264,7 @@ async def _ensure_run_started(
     logger: logging.Logger,
     abandon_existing: bool = False,
     ascension: int | None = None,
+    allow_mid_run_resume: bool = False,
 ) -> bool:
     """Make sure we're in a live run. If at menu/game_over/timeline, start a new run.
 
@@ -271,12 +272,27 @@ async def _ensure_run_started(
     select_character, embark) to navigate menu screens automatically.
 
     If abandon_existing=True, any saved run is abandoned rather than re-entered.
+
+    If allow_mid_run_resume=True (``--resume-saved``), an in-progress save is
+    adopted as-is — floor, character and ascension included. That is what the
+    evaluation harness needs for segment continuation: it restores a state
+    snapshot first, and the agent must continue *that* run rather than the
+    floor>1 safety net throwing it away.
     """
     raw = await client.get_state()
     state_type = raw.get("state_type", "unknown")
     logger.info("Current state: %s", state_type)
 
     if state_type in client.IN_RUN_STATES and not abandon_existing:
+        if allow_mid_run_resume:
+            run_data = raw.get("run") or {}
+            logger.info(
+                "Resuming saved run in place (--resume-saved): %s A%s F%s",
+                run_data.get("character_id") or run_data.get("character_name") or "?",
+                run_data.get("ascension", 0),
+                run_data.get("floor", 0),
+            )
+            return True
         run_data = raw.get("run") or {}
         run_floor = run_data.get("floor", 0)
         # Safety net: any mid-run state (floor > 1) is never what a fresh
@@ -337,6 +353,7 @@ async def main(
     ascension_mode: str | None = None,
     experiment_tag: str = "",
     abandon_existing: bool = False,
+    resume_saved: bool = False,
 ) -> None:
     setup_logging()
     logger = logging.getLogger("run_agent")
@@ -636,6 +653,7 @@ async def main(
             if not await _ensure_run_started(
                 client, character, logger, ascension=effective_ascension,
                 abandon_existing=_abandon,
+                allow_mid_run_resume=resume_saved,
             ):
                 logger.error("Failed to start new run. Stopping.")
                 break
@@ -958,6 +976,15 @@ if __name__ == "__main__":
         help="Disable self-evolution (ToolPreprocessor + PlanVerifier + dynamic tools)",
     )
     parser.add_argument(
+        "--resume-saved", action="store_true",
+        help=(
+            "Adopt an in-progress saved run as-is instead of abandoning it past "
+            "floor 1. Used by the evaluation harness (src/eval/segment.py) for "
+            "segment continuation: the harness restores a state snapshot, then "
+            "the agent must continue that run rather than wipe it."
+        ),
+    )
+    parser.add_argument(
         "--experiment-tag", type=str, default="",
         help="Tag runs with an experiment batch identifier (recorded in history.jsonl)",
     )
@@ -1025,6 +1052,7 @@ if __name__ == "__main__":
             ascension_mode=args.ascension,
             experiment_tag=args.experiment_tag,
             abandon_existing=args.abandon_existing,
+            resume_saved=args.resume_saved,
         ))
         _exit_code = 0
     except KeyboardInterrupt:
