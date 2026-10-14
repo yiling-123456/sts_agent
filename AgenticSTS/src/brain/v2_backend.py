@@ -525,9 +525,19 @@ class V2Backend:
 
     @staticmethod
     def _is_gpt5_model(model: str) -> bool:
-        """Return True for GPT-5-family models routed through OpenAI-compatible relays."""
+        """Return True for GPT reasoning models routed through OpenAI-compatible relays.
+
+        Covers the gpt-5 and gpt-6 families. Both accept the top-level
+        ``reasoning_effort`` parameter and expose ``reasoning_content`` on this
+        relay: measured on one combat prompt (2026-10-14), gpt-6.1-sol spent 46
+        reasoning tokens at effort=low vs 120 at effort=high, gpt-5.6-sol 86 vs
+        160. Matching only ``gpt-5*`` meant a gpt-6 run silently went out with no
+        ``reasoning_effort`` at all — i.e. at the provider default, roughly the
+        low end — and its reasoning text never reached the run log either
+        (``capture_reasoning`` / ``parse_think_tags`` below are gated on this).
+        """
         value = (model or "").strip().lower()
-        return value.startswith("gpt-5")
+        return value.startswith(("gpt-5", "gpt-6"))
 
     @staticmethod
     def _normalize_openai_reasoning_effort(*, think: bool, effort: str) -> str:

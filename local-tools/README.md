@@ -11,6 +11,7 @@ unchanged and runs from `scripts.run_agent`.
 | `smoke_gpt_relay.py` | Payload-realistic probe: streaming + tools + `reasoning_effort` + `temperature=0`, i.e. the exact shape `V2Backend` sends for a `gpt-5*` model. |
 | `effort_probe.py` | Sends one combat prompt at `reasoning_effort` low/medium/high and prints reasoning tokens + latency, to verify the relay honours the parameter. |
 | `model_probe.py` | One small prompt per model name (default effort `medium`), reporting status, served model, reasoning tokens and latency — run this before pointing a 50-minute agent run at a new model. |
+| `reasoning_stream_probe.py` | Streams a tool-bearing request and counts `delta.reasoning_content` frames, to tell "the model reasons but the relay hides it" from "our capture path is off". gpt-6.1-sol returns 0 frames (only a token count), gpt-5.6-sol / gpt-5.5 return visible reasoning. |
 | `sts_progress.py` | Summarises the newest `logs/run_*.jsonl`: decisions, floor/act trajectory, action mix, state types, non-OK action results. |
 | `llm_stats.py` | Token + latency totals over one or more run logs. |
 | `GPT_AGENTICSTS_A0_RUN_REPORT.md` | Report for the two A0 runs (Ironclad + Silent) done on GPT-5.5. |
