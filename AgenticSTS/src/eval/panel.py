@@ -19,7 +19,7 @@ import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from typing import Any
 
-from src.eval.game_client import EvalGameClient, in_run, run_summary
+from src.eval.game_client import EvalGameClient, run_summary
 from src.eval.ring import RoomEntry, RoomRing, watch_rooms
 from src.eval.snapshot import RestoreMismatch
 
@@ -112,7 +112,7 @@ class Panel:
         return {
             "live": run_summary(state) if state else "no state yet",
             "seed": state.get("run_id"),
-            "current_key": None if not in_run(state) else f"a{state.get('act') or 1}-f{run.get('floor')}",
+            "current_key": self.ring.key_for(state),
             "busy": self.busy,
             "rooms": self.ring.as_dicts(),
         }

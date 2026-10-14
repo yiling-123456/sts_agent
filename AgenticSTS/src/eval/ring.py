@@ -27,8 +27,6 @@ from typing import Any, Callable
 
 from src.eval.game_client import EvalGameClient, in_run
 from src.eval.snapshot import (
-    SAVE_BACKUP_SUFFIX,
-    SAVE_FILENAME,
     SnapshotMeta,
     SnapshotStore,
     find_save_file,
@@ -36,14 +34,20 @@ from src.eval.snapshot import (
 
 
 def room_key(state: dict[str, Any]) -> str | None:
-    """``a1-f12`` for the run currently being played, else None."""
+    """``<seed>-a1-f12`` for the run currently being played, else None.
+
+    The seed is part of the key on purpose: without it a second run would collide
+    with the first one's floors, so new rooms would be silently skipped and a
+    rewind would jump into the wrong run. ``run_id`` *is* the RNG seed string.
+    """
     if not in_run(state):
         return None
     run = state.get("run") or {}
     floor = run.get("floor")
     if floor is None:
         return None
-    return f"a{state.get('act') or 1}-f{floor}"
+    seed = str(state.get("run_id") or "unknown").strip() or "unknown"
+    return f"{seed}-a{state.get('act') or 1}-f{floor}"
 
 
 @dataclass
@@ -150,6 +154,10 @@ class RoomRing:
     def latest(self) -> RoomEntry | None:
         return self.entries[-1] if self.entries else None
 
+    def key_for(self, state: dict[str, Any]) -> str | None:
+        """Public wrapper so callers (the panel) share one key definition."""
+        return room_key(state)
+
     def find(self, key_or_label: str) -> RoomEntry | None:
         for entry in self.entries:
             if key_or_label in (entry.key, entry.label):
@@ -229,8 +237,6 @@ def _digest(path: Path) -> str:
 __all__ = [
     "RoomEntry",
     "RoomRing",
-    "SAVE_BACKUP_SUFFIX",
-    "SAVE_FILENAME",
     "room_key",
     "watch_rooms",
 ]
