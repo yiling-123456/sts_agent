@@ -24,7 +24,7 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Callable
 
-from src.eval.game_client import EvalGameClient, in_run
+from src.eval.game_client import EvalGameClient
 from src.eval.policies import Policy, play_segment
 from src.eval.snapshot import SnapshotStore
 
