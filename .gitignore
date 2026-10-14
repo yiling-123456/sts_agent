@@ -27,6 +27,10 @@ paper/data_package_2026-05-20/
 .env
 *.key
 
+# Python bytecode from the operator scripts in local-tools/
+__pycache__/
+*.pyc
+
 # Per-run evolution context dumps (local caches; not part of the released artifact).
 # Kept out of the index so `git status` reflects real store changes only.
 AgenticSTS-Data/evolution/contexts/
