@@ -418,7 +418,12 @@ class EvolutionEngine:
                         tools=tools,
                         tool_choice=tool_choice,
                         think=True,
-                        effort="high",
+                        # Follow the configured analysis-tier effort instead of
+                        # hard-coded "high": deepseek runs with
+                        # STS2_DEEPSEEK_EFFORT_ANALYSIS=low get thinking-off
+                        # tool calls (cheaper; also the only way to keep
+                        # tool_choice="required" on DeepSeek).
+                        effort=config.LLM_THINK_EFFORT_ANALYSIS or "high",
                         max_tokens=4096,
                         openai_relay_profile="postrun",
                     )

@@ -62,15 +62,20 @@ PHASE2_PROMOTE_WORSE_B_MAX = 1
 # Phase 2 *decision sampling* must match the tier that produces the real
 # runtime decision — otherwise we'd be measuring skill effectiveness on a
 # different model distribution than the one deployed. Default sampler is
-# therefore the strategic tier (Gemini 3.1 Pro); the pair *judge* stays
-# at fast tier because BETTER_B/SAME/WORSE_B is a classification task
-# that does not benefit from deeper reasoning.
+# therefore the strategic tier; the pair *judge* stays at fast tier
+# because BETTER_B/SAME/WORSE_B is a classification task that does not
+# benefit from deeper reasoning. The fallback resolves from the active
+# family registry (was hard-coded "gemini-3.1-pro-preview" until
+# 2026-09-24 — deepseek-family runs must not call Gemini).
 DEFAULT_SAMPLER_MODEL_ENV = "STS2_STRATEGIC_MODEL"
-DEFAULT_SAMPLER_MODEL_FALLBACK = "gemini-3.1-pro-preview"
+DEFAULT_SAMPLER_MODEL_FALLBACK = "deepseek-v4-pro"
 
 
 def _default_sampler_model() -> str:
-    return os.getenv(DEFAULT_SAMPLER_MODEL_ENV, DEFAULT_SAMPLER_MODEL_FALLBACK)
+    env_model = os.getenv(DEFAULT_SAMPLER_MODEL_ENV, "").strip()
+    if env_model:
+        return env_model
+    return config.LLM_STRATEGIC_MODEL or DEFAULT_SAMPLER_MODEL_FALLBACK
 
 
 def make_sampler_for_event(event: "LogEvent") -> JudgeClient:

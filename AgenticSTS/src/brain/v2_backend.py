@@ -1411,6 +1411,17 @@ class V2Backend:
             payload["tools"] = self._normalize_openai_tools(tools or [])
             mapped_choice = self._map_openai_tool_choice(tool_choice)
             if mapped_choice is not None:
+                # DeepSeek thinking mode rejects tool_choice "required"
+                # ("Thinking mode does not support this tool_choice" — observed
+                # 2026-09-25 on the evolution tool-use loop). Soften to "auto":
+                # thinking mode only supports auto/none. Thinking-disabled
+                # calls keep "required" (supported there).
+                if (
+                    is_deepseek
+                    and enable_thinking
+                    and mapped_choice == "required"
+                ):
+                    mapped_choice = "auto"
                 payload["tool_choice"] = mapped_choice
 
         relay_candidates = self._get_openai_relay_candidates(profile=openai_relay_profile)

@@ -56,7 +56,13 @@ CHOICE_PHASES = frozenset(
     }
 )
 NAVIGATION_PHASES = frozenset({"map"})
-MENU_PHASES = frozenset({"menu", "game_over", "victory", "timeline", "character_select", "overlay"})
+# "overlay" (MODAL screen) is NOT a menu phase: a transient modal can render
+# for a single frame mid-run (e.g. right after claim_reward, the CARD_SELECTION
+# screen appears through a MODAL). Classifying it as menu made the terminal
+# check fire a false DEFEAT at 79/80 HP on 2026-09-25. Real game-over is
+# detected earlier via `raw.game_over` in derive_state_type, so this is safe.
+# Stuck modals are dismissed by force_unstick (confirm_modal / dismiss_modal).
+MENU_PHASES = frozenset({"menu", "game_over", "victory", "timeline", "character_select"})
 IN_RUN_PHASES = COMBAT_PHASES | REWARD_PHASES | CHOICE_PHASES | NAVIGATION_PHASES
 _HAND_SELECTION_KINDS = frozenset({"hand", "combat_hand_select"})
 _BOSS_FLOORS = frozenset({17, 34, 51})

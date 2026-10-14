@@ -259,11 +259,12 @@ _MODEL_FAMILIES: dict[str, dict[str, dict[str, str]]] = {
         # Smoke-test (2026-04-24, 5k-tok prompt, on Flash):
         #   high = 33.9s / 2.6k reasoning tok
         #   max  = 143.8s / 11.8k reasoning tok (4.24× slower, too slow for per-turn use)
-        # Analysis tier borrows gemini-3.1-pro-preview for distillation / skill
-        # discovery — relay auto-routes via STS2_GEMINI_API_KEY.
+        # Analysis tier: deepseek-v4-pro (switched from gemini-3.1-pro-preview
+        # on 2026-09-24 — the relay auto-routes via STS2_GEMINI_API_KEY, which
+        # this machine does not have; deepseek handles postrun natively).
         "fast":      {"model": "deepseek-v4-pro",       "effort": "low"},
         "strategic": {"model": "deepseek-v4-pro",       "effort": "high"},
-        "analysis":  {"model": "gemini-3.1-pro-preview", "effort": "high"},
+        "analysis":  {"model": "deepseek-v4-pro",       "effort": "high"},
     },
 }
 

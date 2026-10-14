@@ -43,7 +43,7 @@ New-Item -ItemType Directory -Force -Path $mods | Out-Null
 
 # 1. Clear ALL known mod artifacts incl. stale backups (globs): every competitor AND
 #    our own mod, which shares the STS2AIAgent.* filenames and leaves *.bak/*.old cruft.
-$clearGlobs = @("AISpire*", "STS2_MCP*", "STS2AIAgent*", "mod_id.json")
+$clearGlobs = @("AISpire*", "STS2_MCP*", "STS2AIAgent*", "mod_id.json", "mod_manifest.json")
 Write-Host "[mod_swap] clearing mods/ ..."
 foreach ($g in $clearGlobs) {
     Get-ChildItem $mods -Filter $g -Force -ErrorAction SilentlyContinue | ForEach-Object {

@@ -114,10 +114,13 @@ def _relay_for_model(model: str) -> tuple[str, str, str]:
     ``No available channel for model gemini-... under group gpt-az``
     503 error we actually observed in production.
 
-    Qwen models route through the Qwen relay. Everything else (GPT-family
-    chat models, OpenAI-native embedding models like ``text-embedding-3-large``)
-    defaults to the GPT relay — that endpoint is OpenAI-compatible for
-    both ``/v1/chat/completions`` and ``/v1/embeddings``.
+    Qwen models route through the Qwen relay. DeepSeek models route through
+    api.deepseek.com with ``STS2_DEEPSEEK_API_KEY`` (added 2026-09-24 — they
+    previously fell into the GPT default and broke on deepseek-family runs).
+    Everything else (GPT-family chat models, OpenAI-native embedding models
+    like ``text-embedding-3-large``) defaults to the GPT relay — that endpoint
+    is OpenAI-compatible for both ``/v1/chat/completions`` and
+    ``/v1/embeddings``.
     """
     model_low = (model or "").lower()
     if model_low.startswith("gemini"):
@@ -128,6 +131,10 @@ def _relay_for_model(model: str) -> tuple[str, str, str]:
         base = os.getenv("STS2_QWEN_BASE_URL", "https://proxy.example.com")
         key = os.getenv("STS2_QWEN_API_KEY", "")
         return base, key, "qwen"
+    if model_low.startswith("deepseek"):
+        base = os.getenv("STS2_DEEPSEEK_BASE_URL", "https://api.deepseek.com")
+        key = os.getenv("STS2_DEEPSEEK_API_KEY", "")
+        return base, key, "deepseek"
     # Default → GPT relay (also the right answer for OpenAI embedding models).
     base = os.getenv("STS2_GPT_BASE_URL", "https://proxy.example.com")
     key = os.getenv("STS2_GPT_API_KEY", "")
