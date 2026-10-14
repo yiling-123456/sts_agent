@@ -73,6 +73,33 @@ Seed identity survived every restore (`run_id == Rng.StringSeed`, exposed by
   half-built payload (empty hand, energy 0). Any comparison must wait for the
   state to settle — `spike_restore_consistency.wait_settled()` does this.
 
+## Addendum (2026-10-14, `probe_save_moments.py`): what the save contains, per screen
+
+Question: can a player "rewind by clicking a visited map node"? That needs to
+know which screens the game ever saves *at*.
+
+Measured round trip — finish the F2 fight, arrive on the map at F2:
+
+* `current_run.save` digest **did not change** across mid-combat → fight won →
+  map screen (`1c65c51b9d09` throughout);
+* capturing the save *while standing on the map* and restoring it lands on the
+  **F2 fight entry**, not the map (`entry_digest 19ec9cb7…`, identical to the
+  snapshot taken mid-fight).
+
+So the save always holds the **last room entry**, and map screens are never
+saved. Consequences:
+
+| Player wish | Feasible? |
+|---|---|
+| Restart the current fight / room | ✅ this is exactly what the save holds |
+| Replay the current floor's room | ✅ restore the snapshot of the node you travelled to this floor |
+| Return to the map and re-pick the path | ❌ no map-state save exists; the closest is restoring the **previous** room's entry and replaying it (same seed ⇒ same events ⇒ same map options) |
+| Jump to any visited node | ✅ if a per-node-entry snapshot ring is kept (~46 KB per room) |
+
+The map payload already carries everything a clickable-node UI would key on:
+`nodes[].{row,col,node_type,state,visited,is_current,parents,children}` plus
+`current_node`, `available_nodes`, `starting_node`, `boss_node` (59 nodes at F2).
+
 ## Minimal mod additions still worth building
 
 1. `GET /snapshot_info` → run-save path, sha256, mtime, `run_id`, floor, screen.
