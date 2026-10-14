@@ -1,0 +1,55 @@
+{"ts": 1790319336.7956915, "guide_type": "combat", "enemy_key": "multi:Leaf Slime (S)+Twig Slime (M)+Twig Slime (S)", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1790319340.4034715, "guide_type": "route", "act": 1, "character": "the ironclad", "version": 6, "memory_count": 10}
+{"ts": 1790319344.260763, "guide_type": "deck", "character": "the ironclad", "archetype": "starter_deck", "version": 1, "build_count": 1}
+{"ts": 1790320406.5545206, "guide_type": "route", "act": 1, "character": "the ironclad", "version": 7, "memory_count": 11}
+{"ts": 1790320409.8904057, "guide_type": "event", "event_id": "BYRDONIS_NEST", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1790322644.8353245, "guide_type": "combat", "enemy_key": "Mawler", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1790322651.9445934, "guide_type": "combat", "enemy_key": "multi:Axe Raider+Crossbow Raider+Tracker Raider", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1790322662.364211, "guide_type": "combat", "enemy_key": "multi:Inklet+Inklet+Inklet", "character": "the ironclad", "version": 1, "episode_count": 2, "win_rate": 1.0}
+{"ts": 1790322666.566087, "guide_type": "deck", "character": "the ironclad", "archetype": "strength_scaling", "version": 1, "build_count": 1}
+{"ts": 1790322670.346258, "guide_type": "event", "event_id": "SAPPHIRE_SEED", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1790329472.099458, "guide_type": "combat", "enemy_key": "Hunter Killer", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1790329482.412441, "guide_type": "combat", "enemy_key": "The Obscura", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 0.0}
+{"ts": 1790329491.6704297, "guide_type": "combat", "enemy_key": "Thieving Hopper", "character": "the ironclad", "version": 1, "episode_count": 2, "win_rate": 1.0}
+{"ts": 1790329502.7553737, "guide_type": "combat", "enemy_key": "Vantom", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1790329511.737777, "guide_type": "combat", "enemy_key": "multi:Bowlbug (Nectar)+Bowlbug (Rock)", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1790329533.1776845, "guide_type": "combat", "enemy_key": "multi:Flyconid+Snapping Jaxfruit", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1790329543.1627312, "guide_type": "combat", "enemy_key": "multi:Fuzzy Wurm Crawler+Shrinker Beetle", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1790329550.7630851, "guide_type": "combat", "enemy_key": "multi:Nibbit+Nibbit", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1790329553.703719, "guide_type": "route", "act": 1, "character": "the ironclad", "version": 8, "memory_count": 12}
+{"ts": 1790329557.4913583, "guide_type": "deck", "character": "the ironclad", "archetype": "strength_scaling", "version": 2, "build_count": 2}
+{"ts": 1790329562.4356358, "guide_type": "event", "event_id": "PAEL", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1790329567.6082616, "guide_type": "event", "event_id": "SELF_HELP_BOOK", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1790329570.967207, "guide_type": "event", "event_id": "SYMBIOTE", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1791904347.452273, "guide_type": "combat", "enemy_key": "Punch Construct", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791904363.647327, "guide_type": "combat", "enemy_key": "Seapunk", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791904410.9442472, "guide_type": "combat", "enemy_key": "Sludge Spinner", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791904434.662734, "guide_type": "combat", "enemy_key": "Soul Fysh", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791904467.272176, "guide_type": "combat", "enemy_key": "Spiny Toad", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791904495.6054347, "guide_type": "combat", "enemy_key": "Terror Eel", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791904541.937781, "guide_type": "combat", "enemy_key": "The Insatiable", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 0.0}
+{"ts": 1791904557.7065406, "guide_type": "combat", "enemy_key": "multi:Bowlbug (Egg)+Bowlbug (Rock)", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791904574.7379334, "guide_type": "combat", "enemy_key": "multi:Calcified Cultist+Seapunk", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791904610.2148764, "guide_type": "combat", "enemy_key": "multi:Corpse Slug+Corpse Slug+Corpse Slug", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791904646.072048, "guide_type": "combat", "enemy_key": "multi:Decimillipede+Decimillipede+Decimillipede", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791904670.0438883, "guide_type": "combat", "enemy_key": "multi:Phantasmal Gardener+Phantasmal Gardener+Phantasmal Gardener+Phantasmal Gardener", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791904693.3801057, "guide_type": "combat", "enemy_key": "multi:Toadpole+Toadpole", "character": "the ironclad", "version": 1, "episode_count": 2, "win_rate": 1.0}
+{"ts": 1791904721.4300666, "guide_type": "combat", "enemy_key": "multi:Two-Tailed Rat+Two-Tailed Rat+Two-Tailed Rat", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791904732.1290162, "guide_type": "route", "act": 1, "character": "the ironclad", "version": 9, "memory_count": 13}
+{"ts": 1791904740.0212312, "guide_type": "deck", "character": "the ironclad", "archetype": "self_damage", "version": 1, "build_count": 2}
+{"ts": 1791904751.723491, "guide_type": "event", "event_id": "BUGSLAYER", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1791904774.244679, "guide_type": "event", "event_id": "NEOW", "character": "the ironclad", "version": 1, "memory_count": 2}
+{"ts": 1791904788.3691783, "guide_type": "event", "event_id": "SYMBIOTE", "character": "the ironclad", "version": 2, "memory_count": 2}
+{"ts": 1791904825.7814198, "guide_type": "event", "event_id": "TEZCATARA", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1791908338.1246245, "guide_type": "combat", "enemy_key": "Bygone Effigy", "character": "the silent", "version": 20, "episode_count": 23, "win_rate": 0.8695652173913043}
+{"ts": 1791908459.737944, "guide_type": "combat", "enemy_key": "Ceremonial Beast", "character": "the silent", "version": 30, "episode_count": 33, "win_rate": 0.7878787878787878}
+{"ts": 1791908490.7739732, "guide_type": "combat", "enemy_key": "Fogmog", "character": "the silent", "version": 30, "episode_count": 40, "win_rate": 1.0}
+{"ts": 1791908536.1997364, "guide_type": "combat", "enemy_key": "multi:Crusher+Rocket", "character": "the silent", "version": 35, "episode_count": 36, "win_rate": 0.5833333333333334}
+{"ts": 1791908581.9106135, "guide_type": "combat", "enemy_key": "multi:Myte+Myte", "character": "the silent", "version": 44, "episode_count": 57, "win_rate": 0.9649122807017544}
+{"ts": 1791908592.8034432, "guide_type": "route", "act": 1, "character": "the silent", "version": 54, "memory_count": 366}
+{"ts": 1791908602.2741718, "guide_type": "deck", "character": "the silent", "archetype": "shiv", "version": 40, "build_count": 99}
+{"ts": 1791908739.756347, "guide_type": "event", "event_id": "NEOW", "character": "the silent", "version": 69, "memory_count": 297}
+{"ts": 1791908779.1557605, "guide_type": "event", "event_id": "PAEL", "character": "the silent", "version": 19, "memory_count": 52}
+{"ts": 1791908791.0942628, "guide_type": "event", "event_id": "THE_LANTERN_KEY", "character": "the silent", "version": 7, "memory_count": 14}
+{"ts": 1791908815.436206, "guide_type": "event", "event_id": "THIS_OR_THAT", "character": "the silent", "version": 19, "memory_count": 56}
+{"ts": 1791908876.513667, "guide_type": "event", "event_id": "WELCOME_TO_WONGOS", "character": "the silent", "version": 5, "memory_count": 13}

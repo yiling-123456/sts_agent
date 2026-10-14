@@ -26,3 +26,7 @@ paper/data_package_2026-05-20/
 # Secrets / local env
 .env
 *.key
+
+# Per-run evolution context dumps (local caches; not part of the released artifact).
+# Kept out of the index so `git status` reflects real store changes only.
+AgenticSTS-Data/evolution/contexts/
