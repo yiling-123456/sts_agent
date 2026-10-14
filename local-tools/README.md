@@ -10,6 +10,7 @@ unchanged and runs from `scripts.run_agent`.
 | `run_gpt_smoke.py` | The one-shot OpenAI-SDK snippet (quantum-entanglement prompt) against the working base URL. |
 | `smoke_gpt_relay.py` | Payload-realistic probe: streaming + tools + `reasoning_effort` + `temperature=0`, i.e. the exact shape `V2Backend` sends for a `gpt-5*` model. |
 | `effort_probe.py` | Sends one combat prompt at `reasoning_effort` low/medium/high and prints reasoning tokens + latency, to verify the relay honours the parameter. |
+| `model_probe.py` | One small prompt per model name (default effort `medium`), reporting status, served model, reasoning tokens and latency — run this before pointing a 50-minute agent run at a new model. |
 | `sts_progress.py` | Summarises the newest `logs/run_*.jsonl`: decisions, floor/act trajectory, action mix, state types, non-OK action results. |
 | `llm_stats.py` | Token + latency totals over one or more run logs. |
 | `GPT_AGENTICSTS_A0_RUN_REPORT.md` | Report for the two A0 runs (Ironclad + Silent) done on GPT-5.5. |

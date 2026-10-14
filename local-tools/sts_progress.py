@@ -3,7 +3,8 @@
 Reports decision count, floor/act progress, action mix, LLM call latency and
 token totals, retries and errors. Read-only; safe to run while the agent plays.
 
-Usage:  .venv\\Scripts\\python.exe ..\\..\\sts_progress.py [run_log.jsonl]
+Usage (from the repository root, where this script lives in local-tools/):
+    AgenticSTS\\.venv\\Scripts\\python.exe local-tools\\sts_progress.py [run_log.jsonl]
 """
 
 from __future__ import annotations
@@ -14,14 +15,24 @@ import os
 import sys
 from collections import Counter
 
-REPO = os.path.join(os.path.dirname(os.path.abspath(__file__)))
+HERE = os.path.dirname(os.path.abspath(__file__))
+# The agent writes logs/run_*.jsonl next to its own code (AgenticSTS/AgenticSTS/),
+# so accept either layout: this script in place, or run from the agent directory.
+LOG_DIR_CANDIDATES = [
+    os.path.join(HERE, "logs"),
+    os.path.join(HERE, "AgenticSTS", "logs"),
+    os.path.join(HERE, os.pardir, "AgenticSTS", "logs"),
+]
 
 
 def newest_log() -> str:
-    logs = glob.glob(os.path.join(REPO, "logs", "run_*.jsonl"))
-    if not logs:
-        raise SystemExit("no run logs found")
-    return max(logs, key=os.path.getmtime)
+    for candidate in LOG_DIR_CANDIDATES:
+        logs = glob.glob(os.path.join(candidate, "run_*.jsonl"))
+        if logs:
+            return max(logs, key=os.path.getmtime)
+    raise SystemExit(
+        "no run logs found; looked in: " + ", ".join(LOG_DIR_CANDIDATES)
+    )
 
 
 def main() -> None:
