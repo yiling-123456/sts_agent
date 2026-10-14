@@ -11,6 +11,40 @@ supporting spike are in
 | 2. Segment continuation | `scripts/eval_snapshot.py restore --handoff` + `run_agent --resume-saved` | works (demonstrated: agent takes over a restored F2 fight) |
 | 3. Controlled policy substitution | segment runs with `--extra-arg=--no-skills` / `--no-memory`, or a fixed `MechanicalPolicy` per arm | plumbing in place |
 | 4. Offline branch evaluation | `scripts/eval_branch.py` | works (demonstrated: 2 branches × 2 repeats, reproducible paired deltas) |
+| 5. Player-facing rewind | `scripts/eval_rewind.py` (local panel) | works (demonstrated: a room ringed live, rewind restores its entry state) |
+
+## Player-facing rewind (`scripts/eval_rewind.py`)
+
+```bash
+python -m scripts.eval_rewind --open      # serve http://127.0.0.1:8760/
+python -m scripts.eval_rewind --list      # print the captured rooms
+```
+
+While it runs, every room the player enters is snapshotted into a ring
+(`<data repo>/eval/snapshots/ring/`, keyed `a{act}-f{floor}` because one map row
+is one floor) and the page lists them newest-first with a *回到这里* button.
+Rewinding pauses the watcher, restores that room, and reports where you landed.
+
+What the ring can offer, given that the game saves only at **room entry** and
+never on the map screen (addendum in
+[`SPIKE_FINDINGS_restore.md`](../../local-tools/SPIKE_FINDINGS_restore.md)):
+
+| Wish | Panel |
+|---|---|
+| Restart the current fight / room | restore the newest entry |
+| Replay a floor's room | restore that floor's entry |
+| Jump back to any earlier visited room | restore that room's entry |
+| Return to the map and re-pick the path | not offered — no map-state save exists; closest is rewinding to the **previous** room and replaying it (same seed ⇒ same map options) |
+
+Captures use `verify=False` (a save/quit cycle would throw the player out of the
+run), so a ring row's entry digest is recorded **on its first restore** and
+checked on every later one. That also cross-validates captures: the ring's
+`a1-f2` entry digest matched an independently captured `smoke-f2` snapshot.
+
+Caveats: rewinding discards the abandoned timeline's progress (older rooms stay
+in the ring, so you can still jump back to them); meta-progression
+(`profile.save`) is not rolled back, so unlocks can be re-earned; the game's own
+replay file (`replays/latest.mcr`) is rewritten by each restore.
 
 ## The restore primitive, and why snapshots verify themselves
 

@@ -85,7 +85,10 @@ class SnapshotMeta:
     state_version: int | None
     live_digest: str
     entry_digest: str
-    live_matches_entry: bool
+    # None when the entry state has not been observed yet: a snapshot taken while
+    # playing cannot afford the save/quit cycle, so its entry digest is recorded
+    # on the first restore instead (see SnapshotStore.restore).
+    live_matches_entry: bool | None
     save_file: str
     save_sha256: str
     save_bytes: int
@@ -119,7 +122,12 @@ class SnapshotMeta:
         return cls(**json.loads(path.read_text(encoding="utf-8")))
 
     def summary(self) -> str:
-        fidelity = "entry==live" if self.live_matches_entry else "entry!=live (autosave predates capture)"
+        if self.live_matches_entry is None:
+            fidelity = "entry unverified (recorded on first restore)"
+        elif self.live_matches_entry:
+            fidelity = "entry==live"
+        else:
+            fidelity = "entry!=live (autosave predates capture)"
         return (
             f"{self.label}: {self.character} A{self.ascension} F{self.floor} {self.screen} "
             f"HP={self.hp}/{self.max_hp} gold={self.gold} seed={self.seed} [{fidelity}]"
@@ -193,7 +201,11 @@ class SnapshotStore:
             meta.restore_count = 1
             persist_entry_state(self, label, restored)
         else:
-            meta.entry_digest = meta.live_digest
+            # Mid-play capture: the save/quit cycle that verification needs would
+            # throw the player out of the run. The entry digest is recorded on the
+            # first restore instead, which is still a real check from then on.
+            meta.entry_digest = ""
+            meta.live_matches_entry = None
         meta.write(target / "snapshot.json")
         return meta
 
@@ -223,7 +235,12 @@ class SnapshotStore:
         meta.restore_count += 1
         if verify:
             digest = state_digest(state)
-            if digest != meta.entry_digest:
+            if not meta.entry_digest:
+                # First restore of a mid-play capture: this *is* the entry state.
+                meta.entry_digest = digest
+                meta.verified_at = _now()
+                persist_entry_state(self, label, state)
+            elif digest != meta.entry_digest:
                 raise RestoreMismatch(label, meta, state)
         meta.write(target / "snapshot.json")
         return meta, state
