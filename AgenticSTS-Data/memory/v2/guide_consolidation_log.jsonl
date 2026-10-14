@@ -53,3 +53,32 @@
 {"ts": 1791908791.0942628, "guide_type": "event", "event_id": "THE_LANTERN_KEY", "character": "the silent", "version": 7, "memory_count": 14}
 {"ts": 1791908815.436206, "guide_type": "event", "event_id": "THIS_OR_THAT", "character": "the silent", "version": 19, "memory_count": 56}
 {"ts": 1791908876.513667, "guide_type": "event", "event_id": "WELCOME_TO_WONGOS", "character": "the silent", "version": 5, "memory_count": 13}
+{"ts": 1791980858.3660183, "guide_type": "combat", "enemy_key": "Devoted Sculptor", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791980889.5663772, "guide_type": "combat", "enemy_key": "Haunted Ship", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791980932.750436, "guide_type": "combat", "enemy_key": "Louse Progenitor", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791980958.287136, "guide_type": "combat", "enemy_key": "Owl Magistrate", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791981001.5968225, "guide_type": "combat", "enemy_key": "Test Subject", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791981047.6265843, "guide_type": "combat", "enemy_key": "Thieving Hopper", "character": "the ironclad", "version": 2, "episode_count": 4, "win_rate": 1.0}
+{"ts": 1791981077.0936954, "guide_type": "combat", "enemy_key": "Tunneler", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791981118.6773112, "guide_type": "combat", "enemy_key": "Waterfall Giant", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791981149.5034645, "guide_type": "combat", "enemy_key": "multi:Chomper+Chomper", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791981184.7059636, "guide_type": "combat", "enemy_key": "multi:Corpse Slug+Corpse Slug", "character": "the ironclad", "version": 1, "episode_count": 2, "win_rate": 1.0}
+{"ts": 1791981235.4693253, "guide_type": "combat", "enemy_key": "multi:Crusher+Rocket", "character": "the ironclad", "version": 1, "episode_count": 2, "win_rate": 1.0}
+{"ts": 1791981260.127446, "guide_type": "combat", "enemy_key": "multi:Myte+Myte", "character": "the ironclad", "version": 1, "episode_count": 1, "win_rate": 1.0}
+{"ts": 1791981308.8916097, "guide_type": "combat", "enemy_key": "multi:Phantasmal Gardener+Phantasmal Gardener+Phantasmal Gardener+Phantasmal Gardener", "character": "the ironclad", "version": 2, "episode_count": 2, "win_rate": 1.0}
+{"ts": 1791981358.7050405, "guide_type": "combat", "enemy_key": "multi:Scroll of Biting+Scroll of Biting+Scroll of Biting", "character": "the ironclad", "version": 1, "episode_count": 2, "win_rate": 1.0}
+{"ts": 1791981382.5156631, "guide_type": "route", "act": 1, "character": "the ironclad", "version": 10, "memory_count": 14}
+{"ts": 1791981396.6442134, "guide_type": "route", "act": 2, "character": "the ironclad", "version": 2, "memory_count": 3}
+{"ts": 1791981413.8021746, "guide_type": "route", "act": 3, "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1791981431.6108363, "guide_type": "deck", "character": "the ironclad", "archetype": "self_damage", "version": 2, "build_count": 3}
+{"ts": 1791981455.1637783, "guide_type": "event", "event_id": "DOLL_ROOM", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1791981472.587165, "guide_type": "event", "event_id": "DOORS_OF_LIGHT_AND_DARK", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1791981494.8492317, "guide_type": "event", "event_id": "DROWNING_BEACON", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1791981518.325067, "guide_type": "event", "event_id": "FIELD_OF_MAN_SIZED_HOLES", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1791981566.7809687, "guide_type": "event", "event_id": "NEOW", "character": "the ironclad", "version": 2, "memory_count": 3}
+{"ts": 1791981597.182033, "guide_type": "event", "event_id": "NONUPEIPE", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1791981684.781923, "guide_type": "event", "event_id": "PAEL", "character": "the ironclad", "version": 2, "memory_count": 2}
+{"ts": 1791981705.5963461, "guide_type": "event", "event_id": "POTION_COURIER", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1791981732.0913153, "guide_type": "event", "event_id": "ROUND_TEA_PARTY", "character": "the ironclad", "version": 1, "memory_count": 1}
+{"ts": 1791981753.0588717, "guide_type": "event", "event_id": "SYMBIOTE", "character": "the ironclad", "version": 3, "memory_count": 3}
+{"ts": 1791981780.6774075, "guide_type": "event", "event_id": "ZEN_WEAVER", "character": "the ironclad", "version": 1, "memory_count": 1}

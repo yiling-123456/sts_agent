@@ -34,3 +34,8 @@ __pycache__/
 # Per-run evolution context dumps (local caches; not part of the released artifact).
 # Kept out of the index so `git status` reflects real store changes only.
 AgenticSTS-Data/evolution/contexts/
+
+# Evaluation-harness state: game saves, entry-state payloads, segment stdout.
+# Machine-local (a snapshot is only replayable on the game build that made it);
+# archive individual reports deliberately if they back a claim.
+AgenticSTS-Data/eval/

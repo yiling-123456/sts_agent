@@ -3,28 +3,28 @@
     "total_runs": 0
   },
   "block_sufficiency_check": {
-    "usage_count": 21956,
-    "success_count": 21956,
+    "usage_count": 22082,
+    "success_count": 22082,
     "creation_run": 0
   },
   "poison_block_survival_plan": {
-    "usage_count": 6909,
-    "success_count": 6909,
+    "usage_count": 7035,
+    "success_count": 7035,
     "creation_run": 0
   },
   "poison_kill_and_survive_check": {
-    "usage_count": 21409,
-    "success_count": 21409,
+    "usage_count": 21535,
+    "success_count": 21535,
     "creation_run": 0
   },
   "poison_survival_analysis": {
-    "usage_count": 23819,
-    "success_count": 22722,
+    "usage_count": 23945,
+    "success_count": 22848,
     "creation_run": 0
   },
   "poison_turns_to_kill": {
-    "usage_count": 23862,
-    "success_count": 22722,
+    "usage_count": 23988,
+    "success_count": 22848,
     "creation_run": 0
   },
   "silent_exact_mitigation_line": {

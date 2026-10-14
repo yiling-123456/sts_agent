@@ -5605,47 +5605,51 @@
       "data_schema_version": 3
     },
     "thieving hopper:the ironclad": {
-      "guide_id": "aa47badb0cff",
+      "guide_id": "61470a994dd2",
       "enemy_key": "Thieving Hopper",
       "character": "the ironclad",
-      "guide_text": "- The fight is both clock-based and threshold-based: Escape Artist sets a 5-turn timer, while Flutter appears around 61 HP and vanishes around 27 HP.\n- Round 1 is the highest early damage: expect two 17-damage hits and a card-steal effect. Block or kill fast.\n- Round 2 is a free setup turn; the enemy only buffs and gains Swipe. Use it to stabilize or prepare burst.\n- Flutter halves Attack damage from roughly 61 HP to 27 HP. Non-Attack damage or effects that bypass Flutter are more efficient in this window.\n- Once below ~27 HP, Flutter drops; this is the best window for an Attack-based finisher.\n- Must deal lethal by the end of round 4, or the enemy escapes on round 5 and the stolen card may be permanently lost.\n- Expect a 21-damage hit on round 3; this is the second major damage spike after round 1.",
+      "guide_text": "- Track the escape clock: Escape Artist says four turns, and the observed escape intent is on round 5. Secure lethal before escape resolves rather than relying on a fifth-round opportunity.\n- Expect an opening 17-damage attack plus CardDebuff, not a confirmed 17\u00d72 attack. The theft's interaction with blocking is unknown.\n- Round 2 consistently shows a non-attacking Buff intent. Check for Swipe and any Strength gain.\n- Round 3 is the main combined danger window: a 21-damage attack, increased to 22 with observed Strength, alongside Flutter's 50% reduction to incoming Attack damage.\n- Read Flutter directly. It remains active even at 7 HP; the old 61-to-27 HP threshold model is unsupported. Non-Attack damage is outside its stated reduction.\n- Flutter removal and a 14-damage attack were observed on round 4, but only once.\n- Killing the enemy with Swipe active returns the stolen card; escape does not satisfy that death trigger.",
       "trigger_model": "mixed",
       "mechanic_summary": [
-        "Escape Artist: Starts at 5 stacks, decrements by 1 each round; the enemy escapes on round 5 if not killed.",
-        "Swipe: Gained on round 2; if the enemy dies while Swipe is active, a stolen card is returned to the player.",
-        "Flutter: Gained at an HP threshold (~61/79); reduces Attack damage taken by 50%. Dissipates when HP drops below roughly 27/79.",
-        "Fixed round-based intent pattern: Round 1 multi-attack + card debuff, Round 2 buff, Round 3 heavy attack, Round 4 attack, Round 5 escape."
+        "Primarily round-driven, with a death-triggered card-return mechanic. No reliable HP-threshold mechanic is established.",
+        "Escape Artist explicitly states that the enemy exits combat after 4 turns. Observed escape intent occurs on round 5.",
+        "Swipe explicitly returns the stolen card when this enemy is killed. The precise theft timing and whether blocking prevents theft are not established.",
+        "Flutter explicitly reduces damage received from Attacks by 50%. Its observed appearance and disappearance align with round transitions rather than demonstrated HP thresholds.",
+        "The observed intent sequence is opening attack plus CardDebuff, buff, heavy attack, smaller attack, then escape.",
+        "Strength increases Attack damage. The observed round-3 damage variation of 21 versus 22 is consistent with the enemy having 1 Strength."
       ],
       "round_triggers": [
-        "Round 1: Uses Attack(17) twice and a CardDebuff effect.",
-        "Round 2: Uses a Buff action and gains Swipe.",
-        "Round 3: Uses a single Attack(21).",
-        "Round 4: Uses Attack(14).",
-        "Round 5: Uses Escape and exits combat if alive.",
-        "Escape Artist decrements by 1 at the start of each round."
+        "Round 1: Attack(17) plus CardDebuff appears in all four observations. The data does not establish two 17-damage hits; the frequency count is not a hit count.",
+        "Round 2: Buff intent appears in all four observations; Swipe is present by this round. One recorded variant also has Strength(1).",
+        "Round 3: Attack(21), or Attack(22) with Strength(1), is observed. Flutter(5) first appears in the recorded round-3 transitions.",
+        "Round 4: Attack(14) and removal of Flutter are observed in one surviving fight.",
+        "Round 5: Escape intent is observed in one surviving fight, consistent with Escape Artist's four-turn deadline.",
+        "Escape Artist's displayed stacks decline from 5 on round 1 to 1 on round 5. The snapshots establish round-to-round decrementing, not the exact within-round timing."
       ],
       "threshold_triggers": [
-        "At approximately 61/79 HP, gains Flutter (50% damage reduction from Attacks).",
-        "Below approximately 27/79 HP, loses Flutter and becomes vulnerable to full Attack damage again."
+        "No fixed HP threshold for Flutter is supported: it appears on round 3 at 61/79, 18/79, and 7/79 HP, while round-2 snapshots at 50/79 and 52/79 HP lack it.",
+        "Flutter disappears on round 4 at 27/79 HP in one observation. This does not establish an HP-based removal trigger, especially because Flutter remains present at lower HP on round 3.",
+        "Death while Swipe is active returns the stolen card, as explicitly defined by Swipe.",
+        "No revive or summon trigger is documented. Vulnerable appears in one snapshot, but its source is unknown and cannot be assigned to an intrinsic enemy phase."
       ],
       "danger_windows": [
-        "Round 1: Two 17-damage attacks plus a card-stealing debuff if unblocked.",
-        "Round 3: Single 21-damage attack while Flutter is active, making retaliation with Attacks inefficient.",
-        "Rounds 2-4 while Flutter is active: Attack-based damage is halved, prolonging the fight and risking escape.",
-        "Round 5: If not killed by now, the enemy escapes and the stolen card may be lost."
+        "Round 1: Opening Attack(17) and card-debuff pressure; the theft's exact conditions are uncertain.",
+        "Round 3: Heavy Attack(21\u201322) coincides with observed Flutter, reducing Attack-based damage against the enemy.",
+        "Rounds 4\u20135: Final observed attack followed by escape. Escape can prevent recovery of the stolen card through Swipe."
       ],
       "failure_modes": [
-        "Failing to kill before round 5, causing the enemy to escape with a stolen card.",
-        "Over-relying on Attack damage during Flutter's uptime, wasting damage and prolonging the fight.",
-        "Taking large unblocked hits on round 1 or round 3 while focusing purely on offense."
+        "Allowing the escape action to resolve before killing the enemy.",
+        "Treating Flutter as an HP band and expecting it to disappear when HP falls below 27.",
+        "Underestimating round-3 damage when Strength is present.",
+        "Assuming opening theft is prevented by blocking, or that escaped cards are permanently lost, without supporting evidence."
       ],
       "key_patterns": [],
       "win_rate": 1.0,
-      "episode_count": 2,
-      "confidence": 0.82,
-      "version": 1,
-      "created_at": 1790329491.6704297,
-      "updated_at": 1790329491.6704297,
+      "episode_count": 4,
+      "confidence": 0.86,
+      "version": 2,
+      "created_at": 1791981047.6265843,
+      "updated_at": 1791981047.6265843,
       "game_version": "v0.107.1",
       "mod_version": "v0.5.5-xc",
       "data_schema_version": 3
@@ -6389,48 +6393,49 @@
       "data_schema_version": 3
     },
     "multi:phantasmal gardener+phantasmal gardener+phantasmal gardener+phantasmal gardener:the ironclad": {
-      "guide_id": "f3ec72281346",
+      "guide_id": "4dca346dd9de",
       "enemy_key": "multi:Phantasmal Gardener+Phantasmal Gardener+Phantasmal Gardener+Phantasmal Gardener",
       "character": "the ironclad",
-      "guide_text": "- Treat this as a multi-body fight with light scaling, not a single phased enemy.\n- Each Gardener has Skittish: the first hit it takes each turn gives it 1 Block, so expect minor extra durability on every target you touch.\n- Watch Buff intents closely. The observed Buff grants Strength(2), and that Gardener later attacks harder, commonly for 7.\n- Round 1 can already present several attacks at once while another Gardener scales, so the main threat is overlapping bodies plus future Strength.\n- No reliable HP threshold, death trigger, revive, or summon rule was confirmed. The max-HP changes appear more consistent with different Gardener instances than true phase shifts.\n- Priority should be based on current intents and whether a Gardener has recently buffed or gained Strength.",
-      "trigger_model": "mixed",
+      "guide_text": "- Track all four Gardeners separately: their attack and buff sequences are staggered, not synchronized phases.\n- The observed opening combines 15 incoming damage with one Strength-building Buff. Count the whole formation's intents.\n- Watch each Buff user on its following turn: Strength(2) and Attack(7) are consistently observed afterward. Later attacks can reach 9, so use current intent values rather than assuming fixed damage.\n- Account for Skittish independently on every target: its first hit each turn grants 1 Block, not 6. This can affect follow-up damage and finishing calculations.\n- Evaluate immediate attackers alongside Gardeners preparing stronger future attacks.\n- No HP threshold, death effect, revive, or summon is established. Apparent max-HP changes likely reflect tracking different bodies; they are not reliable phase cues.\n- The samples cover only three rounds, so do not assume the observed sequences prove an indefinite cycle.",
+      "trigger_model": "round_based",
       "mechanic_summary": [
-        "Fight begins with multiple Phantasmal Gardeners active at once, each with its own HP pool and Skittish power.",
-        "Skittish is explicit: the first time each Gardener is hit each turn, it gains 1 Block.",
-        "Gardeners use a mix of attack and buff intents; Buff appears to grant Strength to that Gardener.",
-        "Strength increases later attack damage.",
-        "No confirmed revive, summon, or death-trigger mechanic was observed."
+        "Four Phantasmal Gardeners act independently, with separate HP pools and staggered attack/buff sequences. The observed fight is primarily turn-driven, with an additional hit-triggered defensive power.",
+        "Skittish explicitly grants each Gardener 1 Block the first time it is hit each turn. The displayed Skittish(6) does not override the description's 1-Block effect.",
+        "Strength explicitly adds damage to Attacks. Buff is consistently followed by Strength(2), strongly supporting a self-buff that grants 2 Strength.",
+        "Observed attacks include 1 damage three times and single attacks for 5, 7, or 9. No separate phase, revive, summon, or death-trigger behavior is confirmed."
       ],
       "round_triggers": [
-        "Round 1 commonly shows three attacking Gardeners and one buffing Gardener: Attack(1x3), Attack(5), Attack(7), and Buff.",
-        "Round 2 commonly includes a Buff intent and an Attack(7) intent among surviving Gardeners.",
-        "A Gardener that used Buff was observed with Strength(2) afterward, then attacking for 7.",
-        "Round 3 observed remaining Gardeners attacking for 7, including one with Strength(2)."
+        "Both observed round-1 formations show one Attack(1x3), one Attack(5), one Attack(7), and one Buff.",
+        "The opening Buff user has Strength(2) and Attack(7) in round 2 in both episodes.",
+        "The opening Attack(1x3) user shows Buff in round 2; in one episode it survives to round 3 with Strength(2) and Attack(7).",
+        "One tracked Gardener follows Attack(7) -> Attack(1x3) -> Buff across rounds 1\u20133.",
+        "One buffed Gardener follows Attack(7) in round 2 with Attack(9) in round 3 while still displaying Strength(2). These short sequences support staggered turn-based patterns, but do not establish a complete repeating cycle."
       ],
       "threshold_triggers": [
-        "No reliable HP-threshold trigger was confirmed.",
-        "Strength gain was observed at HP 30/30, but this aligns better with the prior Buff intent than with an HP threshold.",
-        "Observed max-HP changes are likely due to multiple Gardener instances or target tracking, not a confirmed phase change."
+        "No reliable HP-threshold trigger is established. Strength appears at full HP after a Buff intent, supporting an action-based trigger rather than an HP threshold.",
+        "Reported max-HP transitions match the different Gardeners' HP pools and are more consistent with instance-tracking ambiguity than a phase change.",
+        "No death-triggered effect, revive, summon, or threshold-based override of the observed turn patterns is confirmed."
       ],
       "danger_windows": [
-        "Round 1 has immediate multi-enemy damage pressure while one Gardener buffs.",
-        "The turn after a Gardener buffs is dangerous because Strength(2) can raise its attack output.",
-        "If several Gardeners survive into later rounds, overlapping Attack(7) intents can stack quickly.",
-        "Skittish can create small damage shortfalls when spreading first hits across multiple Gardeners."
+        "Round 1 presents 15 total attack damage across three Gardeners while the fourth buffs, if all remain alive and execute their intents.",
+        "Turns following Buff introduce Strength-enhanced attacks; both episodes show the opening buffer attacking for 7 on round 2.",
+        "Later surviving Gardeners can overlap attacks, and a buffed survivor reaches Attack(9) on round 3.",
+        "The first hit against each separate Gardener each turn triggers Skittish, potentially leaving extra Block against subsequent damage."
       ],
       "failure_modes": [
-        "Leaving buffed Gardeners alive long enough for Strength-enhanced attacks to accumulate.",
-        "Underestimating total incoming damage because each individual attack looks small.",
-        "Forgetting that each Gardener gets its own first-hit Skittish Block each turn.",
-        "Mistaking variable max HP between Gardeners for a confirmed HP phase mechanic."
+        "Underestimating combined damage from several independently acting enemies.",
+        "Treating Buff as a harmless idle turn rather than preparation for stronger attacks.",
+        "Assuming a buffed Gardener always attacks for 7; Attack(9) is also observed without an additional recorded Strength gain.",
+        "Reading Skittish(6) as 6 Block, or treating its first-hit trigger as shared across the group.",
+        "Mistaking changes between different HP pools for transformation, healing, or an HP-triggered phase."
       ],
       "key_patterns": [],
       "win_rate": 1.0,
-      "episode_count": 1,
-      "confidence": 0.78,
-      "version": 1,
-      "created_at": 1791904670.0438883,
-      "updated_at": 1791904670.0438883,
+      "episode_count": 2,
+      "confidence": 0.85,
+      "version": 2,
+      "created_at": 1791981308.8916097,
+      "updated_at": 1791981308.8916097,
       "game_version": "v0.107.1",
       "mod_version": "v0.5.5-xc",
       "data_schema_version": 3
@@ -6525,6 +6530,563 @@
       "game_version": "v0.107.1",
       "mod_version": "v0.5.5-xc",
       "data_schema_version": 3
+    },
+    "devoted sculptor:the ironclad": {
+      "guide_id": "ad8f3ff61a2d",
+      "enemy_key": "Devoted Sculptor",
+      "character": "the ironclad",
+      "guide_text": "- Expect an opening Buff, followed by Ritual(9) and attacks; this sequence was observed once, not established across repeated fights.\n- Track Ritual and accumulated Strength separately. Ritual grants Strength at the end of the Sculptor's turn, increasing subsequent attack damage.\n- The observed danger rises from 12 damage in R2 to 21 in R3. Recheck each intent rather than assuming attacks remain at 12.\n- Limit additional enemy turns when possible: persistent Ritual makes prolonged combat increasingly dangerous.\n- Do not treat 76 HP or 21 HP as phase thresholds. Their timing is consistent with the round-based setup and scaling.\n- No revive, summon, recurring debuff, or status-card mechanic was captured; later behavior remains unknown.",
+      "trigger_model": "round_based",
+      "mechanic_summary": [
+        "Devoted Sculptor appears to use an opening setup turn followed by Strength-scaling attacks.",
+        "Ritual explicitly grants Strength at the end of the enemy's turn; the observed Ritual amount is 9.",
+        "Strength explicitly increases attack damage. The observed attack intent rises from 12 in R2 to 21 in R3, matching the addition of Strength(9).",
+        "Only one three-round fight is available, so the opening sequence is supported, but a repeating attack loop or later phase is not established."
+      ],
+      "round_triggers": [
+        "R1: A Buff intent was observed with no enemy powers present in the snapshot.",
+        "R2: Ritual(9) was present after the opening Buff turn, alongside Attack(12).",
+        "At the end of an enemy turn with Ritual active, Ritual grants Strength according to its power description.",
+        "R3: Strength(9) was present alongside Ritual(9), and the attack intent was 21."
+      ],
+      "threshold_triggers": [
+        "No HP-threshold trigger is confirmed. Ritual was first recorded at 76/162 HP and Strength at 21/162 HP, but these observations also coincide with the opening buff and subsequent Ritual timing.",
+        "No death, revive, summon, or distinct HP-driven phase transition was captured."
+      ],
+      "danger_windows": [
+        "R2 is the first observed damaging turn, with Attack(12).",
+        "R3 is the first observed Strength-enhanced attack, with Attack(21).",
+        "Later enemy turns are a potential escalating danger window: Ritual(9) continues granting Strength while active, although later attack patterns were not captured."
+      ],
+      "failure_modes": [
+        "Treating the opening Buff as harmless rather than the setup for ongoing damage escalation.",
+        "Budgeting for the R2 attack value on later turns despite accumulating Strength.",
+        "Assuming the HP values where powers appeared are confirmed thresholds, or expecting a low-HP phase to interrupt the scaling."
+      ],
+      "key_patterns": [],
+      "win_rate": 1.0,
+      "episode_count": 1,
+      "confidence": 0.79,
+      "version": 1,
+      "created_at": 1791980858.3650186,
+      "updated_at": 1791980858.3650186,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
+      "data_schema_version": 3
+    },
+    "haunted ship:the ironclad": {
+      "guide_id": "e245da369b9b",
+      "enemy_key": "Haunted Ship",
+      "character": "the ironclad",
+      "guide_text": "- Expect a setup opener: no attack is shown, but five status cards and an apparent Weak application create delayed pressure.\n- Afterward, track the observed alternation: 13 damage in one hit, then 4 damage three times. Check the displayed intent rather than assuming the cycle is guaranteed.\n- Watch Weak\u2019s countdown through rounds 2\u20134; it reduces Attack damage by 25% during the attacking sequence.\n- If Haunted Ship has Vulnerable, it takes 50% more Attack damage. The observed window lasts only through round 4; do not assume it is tied to an HP threshold or will recur.\n- No summon, revive, or HP-driven attack override is established. The five status cards\u2019 identities remain unknown.",
+      "trigger_model": "round_based",
+      "mechanic_summary": [
+        "The observed fight opens with a debuff plus five status cards, then alternates a 13-damage single attack with a three-hit attack dealing 4 damage per hit.",
+        "The opening debuff is consistent with Weak: the player has Weak(3), Weak(2), and Weak(1) on rounds 2\u20134. Its stated effect is 25% less damage from Attacks.",
+        "The explicitly defined enemy-side power is Vulnerable: Haunted Ship takes 50% more damage from Attacks while it is active. This defines the effect, not what applies it.",
+        "Haunted Ship briefly has Vulnerable(1) on round 4 and no longer has it on round 5. Its source is unknown; this is not sufficient evidence of an intrinsic phase or HP-threshold mechanic."
+      ],
+      "round_triggers": [
+        "Round 1 in the recorded encounter: Debuff plus StatusCard(5), with no attack intent shown.",
+        "Rounds 2 and 4: Attack(13).",
+        "Rounds 3 and 5: Attack(4x3), totaling 12 damage.",
+        "Weak decreases from 3 on round 2 to 2 on round 3 and 1 on round 4; it is absent from the round-5 snapshot.",
+        "The post-opening attack alternation repeats within one encounter; its continuation beyond round 5 is unverified."
+      ],
+      "threshold_triggers": [
+        "Vulnerable(1) appears at 34/63 HP on round 4 and is absent at 25/63 HP on round 5; no HP threshold or application source is established.",
+        "No death, revive, summon, or confirmed intrinsic phase-change trigger is evidenced."
+      ],
+      "danger_windows": [
+        "Round 1 creates delayed pressure through five status cards and the apparent Weak application; the status-card identities and effects are unspecified.",
+        "Rounds 2\u20134 combine ongoing attacks with Weak, reducing outgoing Attack damage while Haunted Ship continues its attack sequence.",
+        "Rounds 2 and 4 threaten 13 damage in one hit; rounds 3 and 5 threaten three separate 4-damage hits."
+      ],
+      "failure_modes": [
+        "Treating the non-attacking opener as harmless and overlooking its delayed status and Weak pressure.",
+        "Confusing the three-hit attack with a single 12-damage hit.",
+        "Assuming Vulnerable at 34 HP proves an HP-triggered phase transition.",
+        "Assuming the five status cards have a specific effect not supplied by the observations.",
+        "Treating a pattern from one encounter as a fully verified permanent cycle."
+      ],
+      "key_patterns": [],
+      "win_rate": 1.0,
+      "episode_count": 1,
+      "confidence": 0.65,
+      "version": 1,
+      "created_at": 1791980889.5663772,
+      "updated_at": 1791980889.5663772,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
+      "data_schema_version": 3
+    },
+    "louse progenitor:the ironclad": {
+      "guide_id": "8155dfbd80df",
+      "enemy_key": "Louse Progenitor",
+      "character": "the ironclad",
+      "guide_text": "- Track Curl Up(14) separately from the turn sequence: damage triggers its one-time Block gain. Once consumed, it should not trigger again that combat.\n- Expect the observed opening Attack(9) plus debuff to lead into Frail; check the actual debuff timer rather than assuming it has expired.\n- Treat the Defend/Buff turn as preparation for a damage spike, not a harmless pause. The next snapshot showed 14 Block and 6 Strength.\n- The key observed threat is R3's Attack(20) while Frail(1) remains. Use the displayed attack value without adding Strength a second time.\n- Do not treat 118 or 92 HP as phase thresholds. Follow current intents and powers; the sequence beyond R3 is unknown.",
+      "trigger_model": "round_based",
+      "mechanic_summary": [
+        "Provisionally round-driven: the observed sequence is attack plus debuff, then defend plus buff, then a stronger attack. Only one fight is available, so a fixed or repeating cycle is not established.",
+        "Curl Up(14) is a separate damage-triggered reaction: when damaged, the enemy gains Block once per combat.",
+        "Strength increases Attack damage. Strength(6) was present for the observed round-3 Attack(20).",
+        "The enemy applies Frail, which reduces Block gained from cards by 25%. Its application is consistent with the opening debuff intent.",
+        "No HP-threshold phase, death trigger, revive, or summon is established by the observations."
+      ],
+      "round_triggers": [
+        "R1 showed Attack(9) and Debuff intents; Frail(2) was present on the player in R2.",
+        "R2 showed Defend and Buff intents; R3 began with enemy Block(14) and Strength(6), consistent with those actions.",
+        "R3 showed Attack(20) while the player still had Frail(1).",
+        "These are observed round associations, not confirmed recurring trigger rules."
+      ],
+      "threshold_triggers": [
+        "No HP threshold is confirmed. Curl Up disappeared by R2 at 118/136 HP, consistent with consumption of its explicitly damage-triggered, once-per-combat effect.",
+        "Strength(6) appeared by R3 at 92/136 HP, following the R2 Buff intent; that HP value does not establish a Strength threshold.",
+        "No death, revive, summon, or HP-based override of the observed intent sequence was recorded."
+      ],
+      "danger_windows": [
+        "Opening turn: Attack(9) accompanies a debuff intent, setting up reduced defensive efficiency on subsequent turns.",
+        "R2 setup window: Defend and Buff prepare enemy Block and increased damage for the following attack.",
+        "R3 is the main observed danger window: Attack(20) coincides with Strength(6), enemy Block(14), and remaining Frail(1).",
+        "The first damage-triggered Curl Up activation creates a one-time Block barrier that can interrupt damage sequencing."
+      ],
+      "failure_modes": [
+        "Ignoring the one-time Curl Up barrier when estimating how much damage will reach enemy HP.",
+        "Underestimating the stronger attack after the Defend/Buff turn, especially while Frail remains active.",
+        "Adding Strength again to the displayed Attack(20), rather than treating the displayed intent as the damage forecast.",
+        "Mistaking Curl Up consumption or Strength acquisition at recorded HP values for confirmed HP-threshold phases.",
+        "Assuming the three-round sequence repeats indefinitely despite having only one short fight as evidence."
+      ],
+      "key_patterns": [],
+      "win_rate": 1.0,
+      "episode_count": 1,
+      "confidence": 0.7,
+      "version": 1,
+      "created_at": 1791980932.750436,
+      "updated_at": 1791980932.750436,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
+      "data_schema_version": 3
+    },
+    "owl magistrate:the ironclad": {
+      "guide_id": "20b40ddfbdbe",
+      "enemy_key": "Owl Magistrate",
+      "character": "the ironclad",
+      "guide_text": "- Expect the observed opening of 16 damage, then 24 total multi-hit damage, but verify each intent because the sequence is not confirmed across multiple fights.\n- Treat round 2 as the main known danger window; account for the full multi-hit total.\n- Round 3 showed Buff rather than an attack. Inspect any resulting powers and the next intent before assuming what follows.\n- No HP-based phase transition was observed. Do not assume that lowering Owl Magistrate's HP cancels or changes its next action.\n- The zero-loss win does not establish that this enemy is harmless; later behavior was not captured.",
+      "trigger_model": "round_based",
+      "mechanic_summary": [
+        "Provisionally round-driven: the sole recorded encounter showed a 16-damage attack on round 1, a 24-total-damage multi-hit attack on round 2, and a Buff intent on round 3.",
+        "No enemy powers or power descriptions were captured, so no power-defined mechanics can be established.",
+        "The round-3 buff's effect, subsequent attack sequence, and whether the opening sequence repeats are unknown.",
+        "No HP-threshold, death, revive, summon, or phase-change mechanics were detected."
+      ],
+      "round_triggers": [
+        "In the single observed fight, round 1 displayed Attack(16).",
+        "In the single observed fight, round 2 displayed Attack(4x6=24).",
+        "In the single observed fight, round 3 displayed Buff; its resolution was not captured."
+      ],
+      "threshold_triggers": [],
+      "danger_windows": [
+        "Round 1 presents an immediate 16-damage attack.",
+        "Round 2 is the largest observed damage window: a multi-hit attack totaling 24 damage.",
+        "Round 3 presents an unidentified buff; any resulting escalation remains unverified."
+      ],
+      "failure_modes": [
+        "Underestimating round 2 by treating its multi-hit intent as only 4 damage rather than 24 total.",
+        "Treating the round-3 Buff intent as proof that later turns are safe or that the opening sequence resets.",
+        "Assuming the observed opening is a confirmed fixed cycle despite having only one encounter."
+      ],
+      "key_patterns": [],
+      "win_rate": 1.0,
+      "episode_count": 1,
+      "confidence": 0.55,
+      "version": 1,
+      "created_at": 1791980958.287136,
+      "updated_at": 1791980958.287136,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
+      "data_schema_version": 3
+    },
+    "test subject:the ironclad": {
+      "guide_id": "9e30b0b7752a",
+      "enemy_key": "Test Subject",
+      "character": "the ironclad",
+      "guide_text": "- Track the current phase by maximum HP and powers, not global round number. The first two defeats trigger revivals; the observed 300-HP phase has no Adaptable.\n- In the opening phase, every Skill grants 2 Strength immediately. Recheck attack danger after those triggers.\n- In the second phase, watch hit count as well as total damage. The observed sequence escalated from three to five hits, and every unblocked hit can add a Wound.\n- Reassess immediately after revival: Enrage and accumulated Strength disappear at the first transition; Painful Stabs disappears at the second.\n- In the final phase, check Intangible each turn. Its active turns suppress each damage event to 1; its inactive turns are the meaningful damage windows, but still carry substantial attack pressure.\n- Treat Vulnerable as an observed condition, not a guaranteed scripted opening. The Debuff effect and full attack cycles remain unverified.",
+      "trigger_model": "mixed",
+      "mechanic_summary": [
+        "Primarily death-driven phase progression, with turn-based behavior inside phases. Adaptable replaces defeat with a stronger revival; observed maximum HP progresses from 100 to 200 to 300.",
+        "The 100-HP phase has Enrage: each Skill played grants the enemy 2 Strength, increasing its attack damage.",
+        "The 200-HP phase retains Adaptable, removes Enrage and accumulated Strength, and gains Painful Stabs. Its attacks were observed increasing from three to five hits.",
+        "Painful Stabs adds one Wound to the player's discard pile whenever the player receives unblocked attack damage. Multiple unblocked hits can therefore produce multiple Wounds, although actual Wound additions were not captured.",
+        "The 300-HP phase removes Adaptable and Painful Stabs and gains Nemesis plus Intangible. Nemesis grants Intangible 1 at the end of every other turn; Intangible reduces each damage or HP-loss event to 1 while active.",
+        "Vulnerable appeared on the enemy and increases attack damage it receives by 50%. The evidence does not establish an enemy-controlled trigger for its application."
+      ],
+      "round_triggers": [
+        "Nemesis explicitly grants Intangible 1 at the end of every other turn. The exact alternating-turn alignment beyond the observed transition is unverified.",
+        "R1\u2013R2 showed Attack(20), with an additional Debuff intent at R2; the debuff's effect is unidentified.",
+        "R3\u2013R5 showed Attack(10x3), Attack(10x4), then Attack(10x5). This suggests escalating hit count within the second phase, but one episode does not establish a repeating cycle.",
+        "The R6 transition snapshot showed Attack(10x3) and Intangible; R7 showed Attack(45) without Intangible. This does not establish a complete final-phase attack rotation."
+      ],
+      "threshold_triggers": [
+        "Would-be defeat triggers Adaptable revival, rather than a demonstrated positive-HP threshold.",
+        "The first observed revival, recorded at R3, changed maximum HP from 100 to 200, removed Enrage and Strength(6), and added Painful Stabs.",
+        "The second observed revival, recorded at R6, changed maximum HP from 200 to 300, removed Adaptable and Painful Stabs, and added Nemesis and Intangible.",
+        "Phase transitions replace the previous power package and appear to supersede ongoing within-phase attack escalation; a fixed global-round transition schedule is not established.",
+        "No independent HP-percentage threshold or summon trigger is evidenced. Without Adaptable in the final phase, no further revival is supported."
+      ],
+      "danger_windows": [
+        "Opening phase after repeated Skill plays: Enrage can rapidly increase incoming attack damage.",
+        "Second-phase escalation: observed totals rise from 30 to 40 to 50, with each unblocked hit also threatening a Wound.",
+        "Final-phase Intangible turns: damage is heavily suppressed while the enemy remains capable of attacking.",
+        "Final-phase exposed turns: meaningful damage becomes possible, but the observed exposed turn also threatened a 45-damage attack."
+      ],
+      "failure_modes": [
+        "Treating the first or second lethal damage event as the end of combat.",
+        "Ignoring immediate Strength gains from Skills while Enrage is active.",
+        "Allowing several second-phase hits to penetrate Block and multiply Wound pressure.",
+        "Committing damage without checking Intangible.",
+        "Assuming round numbers, Vulnerable applications, or the unidentified Debuff are fixed scripted triggers."
+      ],
+      "key_patterns": [],
+      "win_rate": 1.0,
+      "episode_count": 1,
+      "confidence": 0.85,
+      "version": 1,
+      "created_at": 1791981001.5968225,
+      "updated_at": 1791981001.5968225,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
+      "data_schema_version": 3
+    },
+    "tunneler:the ironclad": {
+      "guide_id": "56ae5e159868",
+      "enemy_key": "Tunneler",
+      "character": "the ironclad",
+      "guide_text": "- Expect an opening attack followed by a Buff/Defend setup; this order is observed, not yet confirmed as a fixed loop.\n- Watch the Block total after setup. Burrowed preserves it across turns, and removing all of it triggers a stun.\n- The key danger window is the Burrowed Attack(25). Check whether a complete Block break is achievable before relying on the stun.\n- Watch for Vulnerable when Burrowed ends: it appeared after the observed break and increases Attack damage taken by 50%.\n- Continue checking intent afterward. Strength persisted, and Attack(15) was displayed in the exposed state.\n- Use Block and power changes\u2014not the sampled HP values\u2014to identify the transition.",
+      "trigger_model": "round_based",
+      "mechanic_summary": [
+        "Appears primarily round-driven, with a conditional Block-break interrupt. The single observed sequence was Attack(13), Buff/Defend, Attack(25) while Burrowed, then Attack(15) after Burrowed ended.",
+        "Burrowed explicitly preserves Block at the start of Tunneler's turn and causes a stun if all its Block is removed.",
+        "Strength increases Attack damage; Tunneler had Strength(2) during and after its Burrowed state.",
+        "Breaking out of Burrowed coincided with gaining Vulnerable(2). Vulnerable explicitly increases damage taken from Attacks by 50%, but its application trigger is not defined by the supplied power descriptions.",
+        "No HP-gated phase, death mechanic, revive, or summon is established."
+      ],
+      "round_triggers": [
+        "R1: Attack(13) was observed.",
+        "R2: Buff and Defend intents were observed.",
+        "By R3: Tunneler had 32 Block, Burrowed(1), and Strength(2), with Attack(25) displayed.",
+        "R4: Attack(15) was displayed after Burrowed ended; Strength(2) remained.",
+        "Only one fight is available, so this sequence is not a confirmed repeating cycle."
+      ],
+      "threshold_triggers": [
+        "While Burrowed, removing all Block triggers a stun, explicitly defined by the power.",
+        "Between the R3 and R4 snapshots, Block fell from 32 to 0, Burrowed disappeared, and Vulnerable(2) appeared; their exact causal ordering is not captured.",
+        "Burrowed was recorded at 36/87 HP and its removal at 2/87 HP, but neither observation establishes an HP threshold."
+      ],
+      "danger_windows": [
+        "The opening Attack(13) applies immediate pressure before the setup turn.",
+        "The post-setup Burrowed state displayed Attack(25), the largest observed attack.",
+        "Unbroken Burrowed Block persists across turns, leaving its protective state intact.",
+        "Losing Burrowed does not remove Strength: a later Attack(15) was still displayed."
+      ],
+      "failure_modes": [
+        "Expecting Burrowed Block to expire naturally.",
+        "Leaving some Block intact and assuming the stun condition was met.",
+        "Treating the recorded HP values as proven phase thresholds.",
+        "Assuming Vulnerable or the loss of Burrowed permanently disables Tunneler."
+      ],
+      "key_patterns": [],
+      "win_rate": 1.0,
+      "episode_count": 1,
+      "confidence": 0.8,
+      "version": 1,
+      "created_at": 1791981077.0936954,
+      "updated_at": 1791981077.0936954,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
+      "data_schema_version": 3
+    },
+    "waterfall giant:the ironclad": {
+      "guide_id": "8597457efc33",
+      "enemy_key": "Waterfall Giant",
+      "character": "the ironclad",
+      "guide_text": "- Track Steam Eruption separately from attack intent: it rises by 3 per observed round and survives as a delayed threat after lethal damage.\n- Before killing the Giant, account for damage at the end of your next turn. In this fight, the resulting DeathBlow displayed 28; use the live intent rather than assuming the previous counter is the exact final damage.\n- Expect early attack/debuff pressure, with Weak appearing after R2, followed by a non-attacking heal turn on R4. Healing does not pause eruption growth.\n- Watch the later Attack(21) window and the Giant's temporary Vulnerable, but do not assume Vulnerable always begins at a specific HP threshold.\n- After lethal damage, treat the enormous HP display as an apparent resolution state, not evidence of a genuine revival. The death phase appears to override the living attack cycle.",
+      "trigger_model": "mixed",
+      "mechanic_summary": [
+        "Waterfall Giant appears primarily round-driven while alive, with a death-triggered delayed damage phase. Only one fight is available, so the observed round sequence is not a confirmed universal script.",
+        "Steam Eruption explicitly causes damage at the end of the player's next turn after the Giant is killed. Its observed value rises from 15 to 27 in increments of 3.",
+        "Strength explicitly increases Attack damage; the Giant has Strength(1) throughout the observed active fight after its opening buff.",
+        "Vulnerable explicitly increases Attack damage received by 50%. The Giant has Vulnerable(2) on R5 and Vulnerable(1) on R6.",
+        "The observed living sequence is opening buff, attack/debuff, attack, heal, then two attacks. A DeathBlow resolution appears to replace the normal sequence after lethal damage."
+      ],
+      "round_triggers": [
+        "R1 shows a Buff intent; by R2, Strength(1) and Steam Eruption(15) are present.",
+        "From R2 through R6, Steam Eruption increases by 3 each round: 15, 18, 21, 24, 27.",
+        "R2 shows Attack(16), Debuff, and Buff; player Weak(1) appears on R3, consistent with that debuff applying Weak.",
+        "R3 shows Attack(11) and Buff; R4 shows Heal and Buff.",
+        "R5 shows Attack(21) and Buff with enemy Vulnerable(2); R6 shows Attack(14) and Buff with Vulnerable(1). The source of Vulnerable is not established."
+      ],
+      "threshold_triggers": [
+        "Killing the Giant triggers Steam Eruption's delayed damage at the end of the player's next turn.",
+        "The apparent post-lethal transition on R7 changes HP and maximum HP to 999999999, removes Steam Eruption and Vulnerable, and displays DeathBlow(28). This is consistent with a death-resolution placeholder, not confirmed revival.",
+        "Steam Eruption and Strength first appear at 213/240 HP, but there is no evidence that this HP value triggers them.",
+        "Vulnerable first appears at 92/240 HP. A low-HP trigger, a timed phase, or an external application cannot be distinguished from this sample; no fixed HP threshold is established."
+      ],
+      "danger_windows": [
+        "R2 combines Attack(16) with a debuff apparently producing Weak, reducing Attack damage dealt by 25%.",
+        "The later living phase includes Attack(21) on R5 while Steam Eruption has already reached 24.",
+        "The post-kill turn is a separate danger window: the observed terminal intent is DeathBlow(28), despite the Giant having already entered its apparent death-resolution state.",
+        "Longer survival raises the observed death-payload counter; escalation beyond R6 is unverified."
+      ],
+      "failure_modes": [
+        "Treating lethal damage as immediate safety and neglecting the delayed eruption.",
+        "Ignoring the rising Steam Eruption value when estimating the cost of extending the fight.",
+        "Assuming R4's heal turn stops escalation; Steam Eruption still increases.",
+        "Mistaking the enormous post-lethal HP value for a normal second health bar.",
+        "Assuming the observed Vulnerable application proves a fixed low-HP phase."
+      ],
+      "key_patterns": [],
+      "win_rate": 1.0,
+      "episode_count": 1,
+      "confidence": 0.8,
+      "version": 1,
+      "created_at": 1791981118.6773112,
+      "updated_at": 1791981118.6773112,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
+      "data_schema_version": 3
+    },
+    "multi:chomper+chomper:the ironclad": {
+      "guide_id": "fe4590a73c36",
+      "enemy_key": "multi:Chomper+Chomper",
+      "character": "the ironclad",
+      "guide_text": "- Track each Chomper independently: the opening pairs a two-hit attack with a 3-card status intent.\n- On attack turns, budget for both 8-damage hits, totaling 16 at the observed values.\n- Treat status turns as pressure, not idle turns; repeated batches can accumulate if the fight continues.\n- Check Artifact on the specific target before expecting a debuff to apply. Both begin with 2 stacks in this sample.\n- The surviving Chomper follows status \u2192 attack \u2192 status across R1\u2013R3. Use this as a forecast, but verify its displayed intent because only one fight is available.\n- No HP-phase change, revive, summon, or partner-death retaliation is supported by these observations.",
+      "trigger_model": "round_based",
+      "mechanic_summary": [
+        "The encounter consists of two Chompers whose observed intents are staggered: one attacks while the other adds status cards.",
+        "Each observed Chomper has Artifact(2). Artifact explicitly negates debuffs.",
+        "The observed attack is two hits of 8 damage, totaling 16. The observed status-card intent adds 3 cards; their identity and destination are not established.",
+        "The surviving Chomper's observed sequence is StatusCard(3) on R1, Attack(8x2) on R2, then StatusCard(3) on R3, suggesting an alternating cycle rather than an HP-driven phase.",
+        "No supported HP-threshold, death-triggered, revive, or summon mechanic is evident."
+      ],
+      "round_triggers": [
+        "R1: one Chomper shows Attack(8x2=16), while the other shows StatusCard(3).",
+        "R2: the remaining observed Chomper shows Attack(8x2=16).",
+        "R3: that Chomper shows StatusCard(3) again.",
+        "The R1\u2013R3 sequence supports attack/status alternation, but one episode does not establish an unconditional repeating script."
+      ],
+      "threshold_triggers": [
+        "No clear HP-, death-, revive-, or summon-linked trigger was detected.",
+        "The reported R1 max-HP change from 64 to 63 does not establish a phase transition: the R1 snapshot contains separate Chompers with those respective maximum HP values."
+      ],
+      "danger_windows": [
+        "R1 combines an immediate 16-damage attack with a separate 3-card status intent.",
+        "Attack turns deliver two damage instances, so account for both hits rather than treating the intent as a single 8-damage attack.",
+        "Status turns create repeated card contamination: the observed status-using Chomper shows batches of 3 on R1 and R3.",
+        "Debuff attempts encounter Artifact(2) on each enemy independently."
+      ],
+      "failure_modes": [
+        "Underestimating the attack by overlooking its second hit.",
+        "Assuming the pair shares one intent cycle instead of tracking each Chomper separately.",
+        "Expecting debuffs to apply immediately despite the target's Artifact.",
+        "Treating the apparent max-HP change as a proven transformation or assuming a partner-death reaction without evidence."
+      ],
+      "key_patterns": [],
+      "win_rate": 1.0,
+      "episode_count": 1,
+      "confidence": 0.76,
+      "version": 1,
+      "created_at": 1791981149.5034645,
+      "updated_at": 1791981149.5034645,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
+      "data_schema_version": 3
+    },
+    "multi:corpse slug+corpse slug:the ironclad": {
+      "guide_id": "46141d45fa2c",
+      "enemy_key": "multi:Corpse Slug+Corpse Slug",
+      "character": "the ironclad",
+      "guide_text": "- Track both opening intents: the pair threatens 14 damage before any death-triggered interruption.\n- A kill changes the survivor's behavior immediately through Ravenous. Check its updated intent and Stunned state rather than relying on the earlier attack display.\n- Use the stun window to resolve the remaining slug before its Strength-enhanced attacks resume; the supplied data does not establish the stun's exact duration.\n- Recalculate damage after consumption, especially for the two-hit attack, which receives Strength on each hit.\n- On round 2, distinguish the 8-damage attacker from the slug showing Debuff. The Debuff's exact effect is unconfirmed.\n- Do not wait for an assumed HP phase: none is supported. The important transition is the first enemy death, not a health percentage.",
+      "trigger_model": "mixed",
+      "mechanic_summary": [
+        "This two-Corpse-Slug encounter combines a repeating early-round intent pattern with a death-triggered interruption.",
+        "Ravenous explicitly makes a surviving Corpse Slug immediately eat a dying enemy, become Stunned, and gain 1 Strength.",
+        "Strength increases attack damage; a two-hit attack benefits from Strength on each hit.",
+        "The observed opening is one 3x2 attack and one 8-damage attack, followed by an 8-damage attack and a Debuff intent on round 2.",
+        "No HP-gated phase, revive, or summon mechanic is established by the supplied evidence."
+      ],
+      "round_triggers": [
+        "In both recorded encounters, round 1 showed one Corpse Slug attacking for 3x2 and the other attacking for 8.",
+        "In both recorded encounters, round 2 showed one 8-damage attack and one Debuff intent.",
+        "The single encounter reaching round 3 showed the surviving slug with a Debuff intent. A repeating cycle and the Debuff's exact effect are not established."
+      ],
+      "threshold_triggers": [
+        "Enemy death triggers Ravenous immediately: the surviving Corpse Slug eats the dead enemy, becomes Stunned, and gains 1 Strength. This interrupts the normal intent sequence rather than requiring a particular round.",
+        "Strength was observed on the survivor at 18/27 HP, but no evidence ties its acquisition to that HP value.",
+        "Reported max-HP changes between 25 and 27 do not establish a phase transition; the initial pair already had those different maximum HP values.",
+        "The recorded Strength(4) conflicts with treating this single death as a confirmed +4 gain. The explicit Ravenous description specifies +1."
+      ],
+      "danger_windows": [
+        "Round 1 presents 14 total incoming damage if both opening attacks execute unchanged.",
+        "Round 2 still presents an 8-damage attack alongside an unidentified Debuff intent.",
+        "After the Ravenous stun ends, the survivor has increased attack damage. Each Strength point adds 2 total damage to a two-hit attack, versus 1 to a single-hit attack."
+      ],
+      "failure_modes": [
+        "Ignoring the death-triggered stun and treating both displayed intents as guaranteed to execute.",
+        "Assuming the survivor remains harmless after consuming its partner; Ravenous also grants permanent offensive scaling through Strength.",
+        "Mistaking enemy identity changes or the 18/27 HP observation for proven HP thresholds.",
+        "Assuming Debuff means a specific player status, or assuming a fixed attack cycle beyond the observed rounds."
+      ],
+      "key_patterns": [],
+      "win_rate": 1.0,
+      "episode_count": 2,
+      "confidence": 0.86,
+      "version": 1,
+      "created_at": 1791981184.7059636,
+      "updated_at": 1791981184.7059636,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
+      "data_schema_version": 3
+    },
+    "multi:crusher+rocket:the ironclad": {
+      "guide_id": "09e1782bd752",
+      "enemy_key": "multi:Crusher+Rocket",
+      "character": "the ironclad",
+      "guide_text": "- Track both intents and final facing direction. Face the larger attacking threat, especially Crusher on R1 and Rocket on R2/R4; recheck displayed damage after changing orientation.\n- Treat Crusher's attack-plus-debuff turn as preparation for Rocket's major strike. R4 combines Rocket's 49-damage intent with Weak and Frail.\n- Rocket's R3 Vulnerable is an observed temporary opening, not a proven HP trigger; verify whether it is actually present.\n- Rocket's R5 sleep does not make the turn harmless: Crusher still attacks and gains defense.\n- Before the first kill, inspect the survivor's HP and intent. Crab Rage immediately adds 99 Block and 5 Strength, potentially extending the fight and worsening its next attack.\n- Expect an approximately five-round cycle, but use current intents and Strength rather than memorized damage. No HP-based phase override or post-death move reset is established.",
+      "trigger_model": "mixed",
+      "mechanic_summary": [
+        "The fight combines a primarily round-driven attack cycle with an explicit ally-death retaliation mechanic. No HP-threshold trigger is established.",
+        "Both enemies have Crab Rage: when an ally dies, the survivor gains 5 Strength and 99 Block.",
+        "Both enemies have Back Attack, dealing 50% more attack damage from behind. Surrounded allows targeting actions to change the player's orientation; these descriptions should not be treated as two independent damage multipliers.",
+        "Crusher alternates attacks, a two-hit attack with debuffs, a buff turn, and an attack with defense. Rocket alternates attacks, a buff setup, a large attack, and sleep.",
+        "Strength increases attack damage, including each hit of Crusher's multi-hit attacks. Rocket also has an observed temporary Vulnerable window.",
+        "The observed move sequence appears to repeat approximately every five rounds, with increasing Strength making later attacks more dangerous."
+      ],
+      "round_triggers": [
+        "R1: Crusher shows Attack(18), while Rocket shows Attack(3), in both episodes.",
+        "R2: Rocket shows Attack(27), while Crusher shows a smaller Attack(4\u20135), in both episodes.",
+        "R3: Crusher shows a two-hit attack plus Debuff; Rocket shows Buff. The same paired intent types recur at R8 in the longer episode.",
+        "After Crusher's R3 debuff, Weak(2) and Frail(2) appear at R4, then decrease to 1 at R5.",
+        "R4: Crusher shows Buff, while Rocket shows Attack(49), in both episodes. Rocket has Strength(2) by this round.",
+        "R5: Crusher shows Attack plus Defend, while Rocket shows Sleep. Crusher has 2 more Strength than before its R4 buff.",
+        "R6\u2013R8 resemble the opening cycle's first three rounds, supporting an approximately five-round repeating sequence; exact displayed damage varies."
+      ],
+      "threshold_triggers": [
+        "Explicit death trigger: an ally's death grants the surviving Crab Rage bearer 5 Strength and 99 Block.",
+        "At R10 in the longer episode, enemy count falls from two to one and Crusher loses Crab Rage while its Strength changes from 2 to 10. This supports an ally-death transition, but the full Strength increase is not explained by Crab Rage alone.",
+        "Rocket gains Vulnerable at full HP on R3 and loses it by R4, supporting a timed window rather than a damage threshold. Its application rule is not established.",
+        "No HP-triggered phase change, revive, or summon is demonstrated. Whether ally death changes the survivor's move sequence is unconfirmed."
+      ],
+      "danger_windows": [
+        "R4: Rocket's displayed 49-damage attack coincides with Weak(2) and Frail(2), making this the clearest coordinated danger window.",
+        "R3 and R8: Crusher's two-hit attack applies debuff pressure while Rocket prepares its next buffed attack.",
+        "R5: Rocket sleeps, but Crusher still attacks and defends while Weak and Frail remain active.",
+        "Immediately after the first enemy dies: the survivor gains substantial Block and Strength.",
+        "Any attack made from behind, especially Rocket's large strike; later cycles also carry accumulated Strength."
+      ],
+      "failure_modes": [
+        "Ending the turn facing the smaller threat and exposing the player to the larger attack from behind.",
+        "Treating Rocket's buff or sleep as a safe turn for the entire encounter.",
+        "Killing one enemy without accounting for the survivor's immediate 99 Block and increased attack damage.",
+        "Assuming observed Strength changes or Vulnerable applications are HP-threshold mechanics.",
+        "Expecting later cycles to retain opening-cycle damage values."
+      ],
+      "key_patterns": [],
+      "win_rate": 1.0,
+      "episode_count": 2,
+      "confidence": 0.87,
+      "version": 1,
+      "created_at": 1791981235.4693253,
+      "updated_at": 1791981235.4693253,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
+      "data_schema_version": 3
+    },
+    "multi:myte+myte:the ironclad": {
+      "guide_id": "3c14fa8e7fc3",
+      "enemy_key": "multi:Myte+Myte",
+      "character": "the ironclad",
+      "guide_text": "- Track each Myte separately: the observed opener splits status pressure and attack-plus-buff pressure between them.\n- Account for both the 2-status-card intent and the 4-damage attack; neither describes the entire enemy turn.\n- Inspect the buff and status details if available. Their effects are not identified in this record.\n- Recheck both intents if the fight continues beyond round 1; no later sequence is established.\n- Do not assume an HP-triggered phase, death interaction, or revive. The 64/61 maximum-HP difference is insufficient evidence of a transition.",
+      "trigger_model": "unclear",
+      "mechanic_summary": [
+        "This encounter contains two Mytes with different observed opening intents: one intends to add 2 status cards, while the other intends to attack for 4 and apply a buff.",
+        "No enemy powers were captured, so no power-defined trigger rules are established.",
+        "Only one round was observed. A repeating move cycle, later-round escalation, and the buff's effect cannot be determined.",
+        "No HP-threshold, death, revive, or summon mechanic is established."
+      ],
+      "round_triggers": [
+        "In the recorded round 1, one Myte displayed StatusCard(2); the other displayed Attack(4) plus Buff. This establishes an observed opener, not a confirmed recurring round rule."
+      ],
+      "threshold_triggers": [],
+      "danger_windows": [
+        "The opening enemy turn presents simultaneous pressure from a 2-status-card intent and a 4-damage attack plus buff.",
+        "If the buff resolves, subsequent danger is unknown because its effect and later intents were not captured.",
+        "If the status-card intent resolves, its downstream impact is unknown because the status type was not captured."
+      ],
+      "failure_modes": [
+        "Assuming both Mytes share the same intent because they have the same name.",
+        "Treating the reported max-HP change from 64 to 61 as a confirmed phase transition; the snapshot contains separate Mytes with those respective maximum HP values.",
+        "Extrapolating a harmless fight or fixed move cycle from a single one-round victory."
+      ],
+      "key_patterns": [],
+      "win_rate": 1.0,
+      "episode_count": 1,
+      "confidence": 0.5,
+      "version": 1,
+      "created_at": 1791981260.127446,
+      "updated_at": 1791981260.127446,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
+      "data_schema_version": 3
+    },
+    "multi:scroll of biting+scroll of biting+scroll of biting:the ironclad": {
+      "guide_id": "19f186a1c5a7",
+      "enemy_key": "multi:Scroll of Biting+Scroll of Biting+Scroll of Biting",
+      "character": "the ironclad",
+      "guide_text": "- Track each Scroll separately: their buff and attack turns are staggered, not synchronized.\n- Distinguish the 14-damage single hit from 5x2 and 7x2. Two leaking hits can trigger Paper Cuts twice; the supplied rule specifies 1 Max HP lost per trigger.\n- Prevent attack leakage where possible. Ordinary HP loss understates the cost of this encounter because Paper Cuts also reduces Max HP.\n- Expect a buffing Scroll to threaten a strengthened two-hit attack next turn, as observed in both episodes.\n- Reassess total incoming damage every round. If all three remain active, the observed R3 configuration threatens 42 damage.\n- A nearly defeated Scroll remains dangerous until removed; one at 1 HP still displayed 7x2.\n- Treat Vulnerable as a temporary damage-taken modifier, not proof of a scripted phase. Do not infer threshold behavior from the recorded max-HP fluctuations.",
+      "trigger_model": "round_based",
+      "mechanic_summary": [
+        "Three Scrolls of Biting act on staggered intent sequences. Observed actions include Buff, a single 14-damage attack, and two-hit attacks dealing 5 or 7 damage per hit.",
+        "Paper Cuts explicitly causes 1 Max HP loss whenever a Scroll deals unblocked attack damage to the player. Its displayed stack count is 2, but the supplied description specifies 1 Max HP per trigger, not 2.",
+        "Strength increases attack damage. Observed Strength(2) is consistent with the two-hit attack increasing from 5x2 to 7x2.",
+        "Vulnerable increases attack damage received by the affected Scroll by 50%. Its appearance is recorded, but no enemy-intrinsic application rule is established.",
+        "The supported fight structure is staggered buffing and attacking, not a demonstrated HP-threshold or death phase. Exact long-term intent cycles remain uncertain."
+      ],
+      "round_triggers": [
+        "Both R1 snapshots show one Scroll buffing, one attacking for 14, and one attacking for 5x2.",
+        "The R1 buffing Scroll is observed at R2 with Strength(2) and a 7x2 attack, supporting a buff-to-strengthened-attack transition.",
+        "In the longer episode, the R1 single-hit attacker buffs on R2, then shows Strength(2) and a 7x2 attack on R3.",
+        "The longer episode's third Scroll shows 5x2 on R1 and R2, then a single 14-damage attack on R3; a complete repeating cycle is not established."
+      ],
+      "threshold_triggers": [
+        "No HP threshold, death, revive, or summon trigger is established by the observations.",
+        "Strength appears on a Scroll at 1/31 HP, but also on a full-health Scroll after buffing; low HP is therefore not established as its trigger.",
+        "Recorded max-HP changes between 31 and 36 do not establish a transformation or threshold rule, particularly because multiple same-named enemies are present.",
+        "Recorded Strength loss and temporary Vulnerable do not establish an intrinsic phase transition or an override of the intent sequence."
+      ],
+      "danger_windows": [
+        "R1 presents 24 total intended attack damage if both attacking Scrolls survive to act.",
+        "Any unblocked attack hit threatens permanent Max HP loss. A two-hit attack creates two potential Paper Cuts triggers if both hits penetrate Block.",
+        "After buffing, a Scroll threatens 7x2 rather than 5x2, increasing both damage pressure and the likelihood of multiple Paper Cuts triggers.",
+        "The longer episode reaches 42 total intended damage on R3: two 7x2 attacks and one 14-damage attack, conditional on all three acting."
+      ],
+      "failure_modes": [
+        "Accepting small attack leaks as harmless despite Paper Cuts' permanent Max HP penalty.",
+        "Treating a two-hit attack as only one possible Paper Cuts trigger.",
+        "Treating a buff turn as evidence that the Scroll will remain nonattacking next round.",
+        "Assuming low HP disables the enemy or triggers a special phase; the 1-HP Scroll still displayed a strengthened attack.",
+        "Confusing same-named enemy records with proven max-HP transformations."
+      ],
+      "key_patterns": [],
+      "win_rate": 1.0,
+      "episode_count": 2,
+      "confidence": 0.82,
+      "version": 1,
+      "created_at": 1791981358.7050405,
+      "updated_at": 1791981358.7050405,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
+      "data_schema_version": 3
     }
   },
   "route_guides": {
@@ -6544,16 +7106,16 @@
       "data_schema_version": 2
     },
     "1:the ironclad": {
-      "guide_id": "a391a7988d2b",
+      "guide_id": "37d9d552efae",
       "act": 1,
       "character": "the ironclad",
-      "guide_text": "- Best paths build first: take 4\u20135 monsters plus a shop/treasure before the first elite; routes with only 1 early fight often failed.\n- Aim for 1 Act 1 elite. Avoid 3-elite lines unless extremely strong; the 3-elite loss bled out despite many rests.\n- Shop around node 3\u20135 is high priority: spend gold into damage/cards/relics instead of hoarding. Convert gold before elite/boss.\n- Rest sites are best after setup and around the elite: rest before/after elite if HP is low, then one final safety rest before boss.\n- Preserve HP aggressively; try to stay above ~70 HP entering boss path and avoid routes that trade HP for too many elites/events.",
-      "preferred_pattern": "monster\u2192monster\u2192shop\u2192monster\u2192monster\u2192treasure/rest\u2192elite\u2192rest\u2192monster\u2192monster\u2192rest\u2192boss",
-      "memory_count": 13,
-      "confidence": 0.72,
-      "version": 9,
-      "created_at": 1791904732.1290162,
-      "updated_at": 1791904732.1290162,
+      "guide_text": "- Best observed Act 1 pattern: early shop, five monsters plus treasure before the elite, then recovery and a final rest before boss. One-fight losses appear truncated, so they do not establish a bad opening.\n- Target one elite after building damage and stabilizing HP. The three-elite loss argues against aggressive elite stacking without exceptional strength.\n- Prioritize an early shop around node 4 to convert gold into useful cards/relics before the elite. Preserve access to rests immediately before and after it.\n- Rest when HP threatens the next fight; upgrade when healthy. Favor a final safety rest if needed, rather than forcing extra elites.\n- Spend gold to improve combat strength and preserve HP throughout. These mixed, sparse records do not support a fixed boss-entry HP target.",
+      "preferred_pattern": "monster\u2192event\u2192monster\u2192shop\u2192event\u2192monster\u2192monster\u2192monster\u2192event\u2192treasure\u2192rest\u2192elite\u2192rest\u2192monster\u2192monster\u2192rest\u2192boss",
+      "memory_count": 14,
+      "confidence": 0.58,
+      "version": 10,
+      "created_at": 1791981382.5156631,
+      "updated_at": 1791981382.5156631,
       "game_version": "v0.107.1",
       "mod_version": "v0.5.5-xc",
       "data_schema_version": 2
@@ -6589,18 +7151,18 @@
       "data_schema_version": 2
     },
     "2:the ironclad": {
-      "guide_id": "9af577c89166",
+      "guide_id": "f13fd58eb8f9",
       "act": 2,
       "character": "the ironclad",
-      "guide_text": "- Entering Act 2 with high HP is critical; data shows starting near 30 HP leads to rapid death, even with a large gold reserve (200+).\n- Prioritize early rest sites. The successful run immediately secured a rest site, allowing the Ironclad to upgrade safely at 92 HP.\n- Avoid early elites. Zero elites were successfully cleared in this data, indicating you should delay elite combat until your deck is stabilized.\n- Do not hoard gold at the expense of your health. If you are entering Act 2 injured, path to an early shop to buy immediate power or potions rather than dying with a heavy purse.",
-      "preferred_pattern": "rest_site\u2192...\u2192boss",
-      "memory_count": 2,
+      "guide_text": "- All three records are losses; no winning node pattern is established. The 80\u219280 HP rest/shop route preserved health but did not reach the boss.\n- No elites were recorded, so an optimal count is unknown. Aim for 0 while injured or underpowered; consider 1 only after stabilizing.\n- Prioritize early rest sites at low HP, especially near 22 HP. Rest rather than upgrade unless health is comfortable.\n- Seek an early shop when gold is substantial: the 48-HP run spent 274 gold yet died before the boss, so spending alone is not enough\u2014buy immediate defensive power or useful potions.\n- Choose manageable fights and recovery opportunities over elite detours. Reassess HP before every fight and preserve enough resources for the boss.",
+      "preferred_pattern": "rest_site\u2192shop\u2192manageable monster\u2192rest_site\u2192boss",
+      "memory_count": 3,
       "confidence": 0.5,
-      "version": 1,
-      "created_at": 1777324652.6543615,
-      "updated_at": 1777324652.6543624,
-      "game_version": "v0.103.1",
-      "mod_version": "v0.5.4-xc",
+      "version": 2,
+      "created_at": 1791981396.6442134,
+      "updated_at": 1791981396.6442134,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
       "data_schema_version": 2
     },
     "1:\u9759\u9ed8\u730e\u624b": {
@@ -6661,6 +7223,21 @@
       "updated_at": 1777462341.1707032,
       "game_version": "v0.103.1",
       "mod_version": "v0.5.4-xc",
+      "data_schema_version": 2
+    },
+    "3:the ironclad": {
+      "guide_id": "8f6a69c1dafa",
+      "act": 3,
+      "character": "the ironclad",
+      "guide_text": "- Only one loss is recorded, with no wins for comparison. Its four-event route never reached the boss; avoid treating event-heavy routing as proven safe.\n- Elite optimum is unconfirmed. Tentatively target 0\u20131 elite: take one only if your deck and HP can comfortably handle it without jeopardizing the boss.\n- Prioritize rest sites when HP is low or a key upgrade matters; prioritize shops when purchases can fix damage, scaling, or defense gaps.\n- HP fell only 80\u219271, so excessive damage is not evident. Preserve that buffer and assess boss readiness rather than resting automatically.\n- Gold fell 270\u219284 across a route containing a shop. Seek impactful purchases, but favor reliable combat rewards over repeated speculative events.",
+      "preferred_pattern": "monster\u2192shop\u2192monster\u2192rest\u2192optional elite\u2192rest\u2192boss",
+      "memory_count": 1,
+      "confidence": 0.5,
+      "version": 1,
+      "created_at": 1791981413.8021746,
+      "updated_at": 1791981413.8021746,
+      "game_version": "v0.107.1",
+      "mod_version": "v0.5.5-xc",
       "data_schema_version": 2
     }
   },
@@ -6838,28 +7415,31 @@
       "data_schema_version": 2
     },
     "the ironclad:self_damage": {
-      "guide_id": "c9c1c9010691",
+      "guide_id": "1f164b08d79d",
       "character": "the ironclad",
       "archetype": "self_damage",
-      "guide_text": "- Winning self-damage leaned on fast Strength scaling: Rupture/Demon Form plus self-damage energy from Offering/Bloodletting, then cash out with Whirlwind or Sword Boomerang.\n- Best composition was a medium deck (~20-25 cards) with strong draw/exhaust support; don\u2019t stay tiny if you need powers, block, and payoff consistency.\n- Prioritize early attacks that scale with Strength and Vulnerable. Avoid taking too many slow powers unless you also have energy/draw to deploy them quickly.\n- Key defense came from Feel No Pain + exhaust and Stone Armor/Colossus-style mitigation to offset self-damage setup turns.\n- Upgrade payoff and enablers first: Whirlwind+, key self-damage/energy cards, then Vulnerable or draw pieces.",
+      "guide_text": "- Build toward fast Strength into multi-hit burst: the completed winner used Rupture/Demon Form, Bloodletting/Offering, and Whirlwind+/Sword Boomerang, amplified by Dominate/Molten Fist Vulnerable.\n- Favor a supported medium deck: the winner had 23 cards with draw, exhaust, and defense. The 15-card loss shows that a small deck alone cannot fix slow setup; avoid basic-card bloat.\n- Early, prioritize efficient attacks, draw, and immediate energy. Avoid stacking expensive setup powers without support: Rupture/Inferno/Pyre/Stampede competed for scarce energy in the floor-33 loss.\n- Offset HP spending with Feel No Pain plus Burning Pact/exhaust, Stone Armor, and Colossus. Offering, Battle Trance, and Expertise help find setup and payoff together.\n- Upgrade Whirlwind and key energy/draw enablers first, then Strength/Vulnerable support. Evidence is limited: only one completed win; the aborted run's boss victory supports the burst plan, not run consistency.",
       "key_cards": [
         "Rupture",
         "Demon Form",
-        "Whirlwind",
-        "Sword Boomerang",
         "Offering",
         "Bloodletting",
+        "Whirlwind",
+        "Sword Boomerang",
+        "Dominate",
+        "Molten Fist",
         "Feel No Pain",
-        "Stone Armor",
+        "Burning Pact",
         "Battle Trance",
-        "Burning Pact"
+        "Stone Armor",
+        "Colossus"
       ],
-      "memory_count": 2,
-      "source_fingerprint": "c430edae8dd754a0cdbbd8dca597d8912d6304c9e9f45b2b6bcadd5bc7551803",
-      "confidence": 0.75,
-      "version": 1,
-      "created_at": 1791904740.0212312,
-      "updated_at": 1791904740.0212312,
+      "memory_count": 3,
+      "source_fingerprint": "cb12f11d7006dcebd6c5062c5633e6357bc11192e20c87086c55f3fe72b962da",
+      "confidence": 0.65,
+      "version": 2,
+      "created_at": 1791981431.6108363,
+      "updated_at": 1791981431.6108363,
       "game_version": "v0.107.1",
       "mod_version": "v0.5.5-xc",
       "data_schema_version": 2
@@ -10538,30 +11118,54 @@
       "updated_at": 1790322670.346258
     },
     "PAEL:the ironclad": {
-      "guide_id": "3673355c5ee7",
+      "guide_id": "4d4b0f0cd5a1",
       "event_id": "PAEL",
       "character": "the ironclad",
-      "guide_text": "Pael's Blood provides a consistent, permanent draw bonus with no downside, making it the safest general-purpose choice; the Horn and Tooth offer stronger but riskier deck-shaping effects that depend heavily on your current deck state.",
+      "guide_text": "Pael's Blood is the safest general-purpose pick for Ironclad, while Pael's Legion favors decks with substantial card-based Block. Horn requires spare energy and time to realize its delayed payoff, Tooth offers temporary deck thinning followed by upgraded returns, and Claw depends on the value of its enchantment and how many Defends you retain.",
       "options": [
         {
           "canonical_name": "Pael's Horn",
           "stage_index": 0,
           "variant_type": "fixed",
           "score": 0.0,
-          "analysis": "Adds 2 Relax cards to your deck. Relax is expensive (3 cost) but provides block plus delayed draw/energy; value depends on deck synergies and ability to afford 3-cost skills.",
+          "analysis": "Adds two Relax cards, each costing 3 energy for 15 Block and next-turn draw and energy before Exhausting. Useful when you can afford the upfront investment, but drawing these expensive skills can weaken immediate tempo; offered twice and never selected.",
           "observed_rewards": [
-            "Relax",
+            "Pael's Horn",
             "Relax"
+          ],
+          "sample_size": 2
+        },
+        {
+          "canonical_name": "Pael's Claw",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.0,
+          "analysis": "Enchants all Defends with \u9ecf\u7cca, so its value depends on the enchantment's effect and the Defends remaining in your deck. The supplied record does not explain the enchantment or show this option being selected, preventing a reliable strength assessment.",
+          "observed_rewards": [
+            "Pael's Claw"
+          ],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Pael's Legion",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.25,
+          "analysis": "Doubles Block gained from a card while awake, then sleeps for two turns; prioritize a substantial Block card for its active trigger. Its pickup was confirmed without an immediate HP or gold cost, but the subsequent F48 defeat provides no evidence that it reliably secures a win.",
+          "observed_rewards": [
+            "Pael's Legion"
           ],
           "sample_size": 1
         },
         {
           "canonical_name": "Pael's Tooth",
           "stage_index": 0,
-          "variant_type": "random_from_pool",
-          "score": 0.0,
-          "analysis": "Removes 5 cards immediately but gradually adds random upgraded cards back after combats, trading early deck thinning for long-term unpredictability.",
-          "observed_rewards": [],
+          "variant_type": "deck_random",
+          "score": 0.05,
+          "analysis": "Removes five cards immediately, then randomly returns one of those removed cards upgraded after each combat\u2014not an unrelated card from a reward pool. This can temporarily concentrate your deck and later improve its cards, but the random return order can disrupt consistency; it was offered but not selected.",
+          "observed_rewards": [
+            "Pael's Tooth"
+          ],
           "sample_size": 1
         },
         {
@@ -10569,18 +11173,18 @@
           "stage_index": 0,
           "variant_type": "fixed",
           "score": 0.4,
-          "analysis": "Grants a permanent +1 card draw each turn with no downside, a consistently strong effect that helps every archetype. Selected in the observed run which ended in defeat, so score is tempered.",
+          "analysis": "An additional card drawn at the start of every turn improves access to attacks, defense, and key combinations without a stated downside. Its pickup was confirmed without an immediate HP or gold cost, making it the strongest broadly applicable option here, although the sole observed selection ended in an F30 defeat.",
           "observed_rewards": [
             "Pael's Blood"
           ],
           "sample_size": 1
         }
       ],
-      "episode_count": 1,
-      "confidence": 0.4,
-      "version": 1,
-      "created_at": 1790329562.4356358,
-      "updated_at": 1790329562.4356358
+      "episode_count": 2,
+      "confidence": 0.42,
+      "version": 2,
+      "created_at": 1791981684.781923,
+      "updated_at": 1791981684.781923
     },
     "SELF_HELP_BOOK:the ironclad": {
       "guide_id": "15af183ffe28",
@@ -10623,39 +11227,39 @@
       "updated_at": 1790329567.6082616
     },
     "SYMBIOTE:the ironclad": {
-      "guide_id": "874901b7a0cf",
+      "guide_id": "eb2bb86e33f3",
       "event_id": "SYMBIOTE",
       "character": "the ironclad",
-      "guide_text": "Symbiote offers either a Corruption-style Attack enchant or a card Transform with no observed HP or gold cost. With only two losing samples and no visible immediate downside, both options remain low-confidence; Approach has a slightly better outcome anchor than Kill with Fire.",
+      "guide_text": "Symbiote offers a \u8150\u5316 enchantment on an Attack or a Transform of a chosen card, with no observed HP or gold cost for either option. Favor Approach when you have a suitable Attack to enchant, or Kill with Fire when replacing a weak card is more valuable; all three runs ended in defeat, so neither option has a demonstrated outcome advantage.",
       "options": [
         {
           "canonical_name": "Approach",
           "stage_index": 0,
           "variant_type": "fixed",
           "score": -0.05,
-          "analysis": "Enchanting an Attack with \u8150\u5316 produced no observed HP or gold change and the run later died on F33. The effect may be useful, but with only one losing sample its value remains mostly unproven.",
+          "analysis": "Offers a \u8150\u5316 enchantment on an Attack, with HP and gold unchanged in the single observed selection. The enchanted card and mechanical payoff were not recorded, and the later F33 defeat provides only a weak negative outcome anchor.",
           "observed_rewards": [
-            "Attack enchanted with \u8150\u5316"
+            "\u8150\u5316 Attack enchantment"
           ],
-          "sample_size": 2
+          "sample_size": 3
         },
         {
           "canonical_name": "Kill with Fire",
           "stage_index": 0,
           "variant_type": "deck_random",
-          "score": -0.2,
-          "analysis": "Transforms a chosen card, which can improve a weak deck slot but carries output variance. The only observed run taking it ended in defeat on F30, keeping the option mildly negative at low confidence.",
+          "score": -0.15,
+          "analysis": "Transforms a chosen card, offering a way to replace a weak deck slot but with an uncertain replacement; neither observed selection changed HP or gold. Both runs later ended in defeat, on F48 and F30, but the unrecorded transformation results prevent attributing those losses to this choice.",
           "observed_rewards": [
-            "Transform a card"
+            "Card Transform (result not recorded)"
           ],
-          "sample_size": 2
+          "sample_size": 3
         }
       ],
-      "episode_count": 2,
+      "episode_count": 3,
       "confidence": 0.25,
-      "version": 2,
-      "created_at": 1791904788.3691783,
-      "updated_at": 1791904788.3691783
+      "version": 3,
+      "created_at": 1791981753.0578732,
+      "updated_at": 1791981753.0578732
     },
     "BUGSLAYER:the ironclad": {
       "guide_id": "261853aa1a1b",
@@ -10693,20 +11297,47 @@
       "updated_at": 1791904751.723491
     },
     "NEOW:the ironclad": {
-      "guide_id": "bd822385e303",
+      "guide_id": "f8018df795e2",
       "event_id": "NEOW",
       "character": "the ironclad",
-      "guide_text": "Neow choices that give immediate economy or deck strength are generally preferable on Ironclad; Golden Pearl is the cleanest observed high-value start. High-variance card packages and HP-costing removes can be strong, while pathing-only or delayed tradeoffs need a route that converts them into real value.",
+      "guide_text": "Favor Neow bonuses that reliably convert into early strength: Golden Pearl provides flexible shop buying power, while Booming Conch supports an elite-heavy route. Card packages, rare-card offers, removals, and pathing tools depend more on deck fit and the opening map; the lone Golden Pearl victory is encouraging but does not establish a definitive ranking.",
       "options": [
+        {
+          "canonical_name": "Booming Conch",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.55,
+          "analysis": "Two extra cards and one extra energy on the opening turn of every elite combat provide repeatable tempo without an upfront penalty. Favor it when the route supports multiple elites; its selection preceded a floor-48 defeat, but that outcome alone does not establish poor value.",
+          "observed_rewards": [
+            "Booming Conch"
+          ],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Lost Coffer",
+          "stage_index": 0,
+          "variant_type": "random_from_pool",
+          "score": 0.48,
+          "analysis": "A card reward plus a random potion offers immediate deck development and a consumable that can help secure an early difficult fight. It has no stated downside, but neither the card choices nor the potion roll were observed because it was not selected.",
+          "observed_rewards": [],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Hefty Tablet",
+          "stage_index": 0,
+          "variant_type": "random_from_pool",
+          "score": 0.24,
+          "analysis": "Choosing among three rare cards improves the chance of finding useful early power compared with receiving an uncontrolled rare. The guaranteed Injury weakens draws until removed, so this trade needs a rare that functions immediately or a practical removal plan; no actual rare offer was observed.",
+          "observed_rewards": [],
+          "sample_size": 1
+        },
         {
           "canonical_name": "Winged Boots",
           "stage_index": 0,
           "variant_type": "fixed",
           "score": 0.25,
-          "analysis": "Three path skips can improve elite, shop, or fire access, but it gives no immediate combat power. This is useful when the Act 1 map has high-value disconnected routes, otherwise it is lower impact than direct gold or cards.",
-          "observed_rewards": [
-            "Winged Boots"
-          ],
+          "analysis": "Three path skips can connect valuable elites, shops, and rest sites or provide an escape from a dangerous route. With no direct combat bonus, its value depends on concrete opportunities in the map rather than flexibility alone.",
+          "observed_rewards": [],
           "sample_size": 1
         },
         {
@@ -10714,7 +11345,7 @@
           "stage_index": 0,
           "variant_type": "random_from_pool",
           "score": 0.38,
-          "analysis": "Choosing between two card packs can provide immediate deck direction and early combat help, though the exact value depends heavily on the offered packs. It was chosen in the defeated run, so the observed outcome anchor is weak despite the option being generally promising.",
+          "analysis": "Choosing between two card packs can supply immediate combat strength and a coherent deck direction, but the quality and compatibility of the packs determine the payoff. It was selected in the floor-33 defeat, and the record does not reveal which cards were obtained.",
           "observed_rewards": [
             "Scroll Boxes"
           ],
@@ -10725,10 +11356,8 @@
           "stage_index": 0,
           "variant_type": "fixed",
           "score": 0.18,
-          "analysis": "Upgraded early card rewards can be valuable, but losing the first chest is a real delayed cost and the payoff depends on seeing good rewards quickly. This is a speculative tempo trade rather than a universally safe Neow pick.",
-          "observed_rewards": [
-            "Silver Crucible"
-          ],
+          "analysis": "Upgrading the first three card rewards can accelerate early strength when those rewards contain cards worth taking. The empty first chest is a guaranteed opportunity cost, making this less reliable when early rewards miss or the opening route provides little chance to exploit the upgrades.",
+          "observed_rewards": [],
           "sample_size": 1
         },
         {
@@ -10736,7 +11365,7 @@
           "stage_index": 0,
           "variant_type": "fixed",
           "score": 0.78,
-          "analysis": "Gaining 150 gold immediately is stable, flexible, and was the chosen option in the victorious run. It enables early shop relics, removals, potions, or premium cards without costing HP or adding variance.",
+          "analysis": "The observed increase from 99 to 249 gold provides flexible purchasing power for relics, removals, potions, or strong cards without sacrificing HP or adding a curse. It was selected in the victorious run, giving it the strongest outcome anchor here, though converting the gold into strength still requires shop access.",
           "observed_rewards": [
             "Golden Pearl"
           ],
@@ -10747,10 +11376,8 @@
           "stage_index": 0,
           "variant_type": "random_from_pool",
           "score": 0.42,
-          "analysis": "A random rare card can be run-defining, especially this early, but it can also miss or be awkward before support pieces exist. Strong upside, but less stable than direct gold because the card roll is uncontrolled.",
-          "observed_rewards": [
-            "Arcane Scroll"
-          ],
+          "analysis": "A random rare card offers substantial upside without an explicit HP or curse penalty, but some rares are awkward before their supporting cards or energy are available. No concrete card roll was observed, so its expected value remains less stable than Golden Pearl's guaranteed economy.",
+          "observed_rewards": [],
           "sample_size": 1
         },
         {
@@ -10758,18 +11385,16 @@
           "stage_index": 0,
           "variant_type": "fixed",
           "score": 0.34,
-          "analysis": "Removing two starter cards is a strong long-term deck-quality boost, but losing 16 HP before Act 1 fights is a serious tempo and safety cost. It is best when the opening route has safe fights, rest access, or strong compensating rewards.",
-          "observed_rewards": [
-            "Precarious Shears"
-          ],
+          "analysis": "Two chosen removals can improve long-term draw quality, but the 16-HP loss and reduced starter-card coverage can weaken the opening fights. Ironclad's sustain helps recover the health cost; favor this on a forgiving route and avoid removing so much damage that early fights become unsafe.",
+          "observed_rewards": [],
           "sample_size": 1
         }
       ],
-      "episode_count": 2,
-      "confidence": 0.55,
-      "version": 1,
-      "created_at": 1791904774.244679,
-      "updated_at": 1791904774.244679
+      "episode_count": 3,
+      "confidence": 0.48,
+      "version": 2,
+      "created_at": 1791981566.7809687,
+      "updated_at": 1791981566.7809687
     },
     "TEZCATARA:the ironclad": {
       "guide_id": "dc313da6999a",
@@ -10816,6 +11441,303 @@
       "version": 1,
       "created_at": 1791904825.7814198,
       "updated_at": 1791904825.7814198
+    },
+    "DOLL_ROOM:the ironclad": {
+      "guide_id": "5be00b93f0f2",
+      "event_id": "DOLL_ROOM",
+      "character": "the ironclad",
+      "guide_text": "Take Some Time offers a useful middle ground: 5 HP buys a choice between two Doll Relics, while examining all three costs another 10 HP. Prefer the free random pick when preserving HP matters most; the premium option needs a strong reason to value the additional choice.",
+      "options": [
+        {
+          "canonical_name": "Pick at Random",
+          "stage_index": 0,
+          "variant_type": "random_from_pool",
+          "score": 0.15,
+          "analysis": "Obtains a random Doll Relic without spending HP, preserving health at the expense of selection. This option was not selected, so its reward quality and performance remain untested.",
+          "observed_rewards": [],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Take Some Time",
+          "stage_index": 0,
+          "variant_type": "random_from_pool",
+          "score": 0.25,
+          "analysis": "The observed choice traded 5 HP for Mr. Struggles, leaving the Ironclad at 75 HP and providing selection between two relics. This was a modest immediate cost, but the eventual F48 defeat does not establish whether the relic helped or hurt the run.",
+          "observed_rewards": [
+            "Mr. Struggles"
+          ],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Examine Each and Make the Best Choice",
+          "stage_index": 0,
+          "variant_type": "random_from_pool",
+          "score": 0.05,
+          "analysis": "Choosing among three Doll Relics provides the most control, but costs 15 HP\u201410 more than the two-choice option. With no observed selection or reward, there is little evidence that the additional choice justifies that premium.",
+          "observed_rewards": [],
+          "sample_size": 1
+        }
+      ],
+      "episode_count": 1,
+      "confidence": 0.3,
+      "version": 1,
+      "created_at": 1791981455.1637783,
+      "updated_at": 1791981455.1637783
+    },
+    "DOORS_OF_LIGHT_AND_DARK:the ironclad": {
+      "guide_id": "278b4349b98b",
+      "event_id": "DOORS_OF_LIGHT_AND_DARK",
+      "character": "the ironclad",
+      "guide_text": "Light Door offers two random upgrades, while Dark Door offers deck thinning through one removal. Favor Light when many remaining upgrades are valuable; favor Dark when removing a weak card would improve consistency more than potentially upgrading starter cards.",
+      "options": [
+        {
+          "canonical_name": "Light Door",
+          "stage_index": 0,
+          "variant_type": "deck_random",
+          "score": 0.35,
+          "analysis": "At F6, this upgraded Fight Me! and Strike without any observed HP or gold cost, providing immediate improvement but spending one upgrade on a starter card. The eventual F48 defeat limits outcome-based confidence without establishing that this choice caused the loss.",
+          "observed_rewards": [
+            "Fight Me!+",
+            "Strike+"
+          ],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Dark Door",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.25,
+          "analysis": "Removing one card can improve draw consistency by eliminating a weak starter or other unwanted card. This option was offered but not selected, so its value is inferred from the stated effect rather than an observed removal or run outcome.",
+          "observed_rewards": [],
+          "sample_size": 1
+        }
+      ],
+      "episode_count": 1,
+      "confidence": 0.35,
+      "version": 1,
+      "created_at": 1791981472.587165,
+      "updated_at": 1791981472.587165
+    },
+    "DROWNING_BEACON:the ironclad": {
+      "guide_id": "de402a629362",
+      "event_id": "DROWNING_BEACON",
+      "character": "the ironclad",
+      "guide_text": "Bottle offers immediate combat utility without the listed Max HP sacrifice, while Climb trades 13 Max HP for upgrades to future Block-card additions. Favor Bottle for short-term safety; consider Climb when you expect to add enough Block cards to justify the permanent health loss.",
+      "options": [
+        {
+          "canonical_name": "Bottle",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.25,
+          "analysis": "Glowwater Potion provides a one-use hand reset and 10-card draw, with potential additional value from Ironclad exhaust synergies, although it also exhausts any useful cards currently held. The observed selection left HP and gold unchanged; the eventual defeat provides no evidence that this choice caused the loss.",
+          "observed_rewards": [
+            "Glowwater Potion"
+          ],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Climb",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.0,
+          "analysis": "Fresnel Lens enchants newly added Block-gaining cards with Nimble 2, offering prospective deck improvement rather than upgrading existing cards. Its guaranteed 13 Max HP cost makes the trade dependent on future card additions, and this option was displayed but not selected.",
+          "observed_rewards": [
+            "Fresnel Lens"
+          ],
+          "sample_size": 1
+        }
+      ],
+      "episode_count": 1,
+      "confidence": 0.35,
+      "version": 1,
+      "created_at": 1791981494.848687,
+      "updated_at": 1791981494.848687
+    },
+    "FIELD_OF_MAN_SIZED_HOLES:the ironclad": {
+      "guide_id": "ed04e75b3c1e",
+      "event_id": "FIELD_OF_MAN_SIZED_HOLES",
+      "character": "the ironclad",
+      "guide_text": "Prefer Enter Your Hole for an enchantment without the explicit curse penalty. Resist offers two removals, but Normality's three-card limit can outweigh the deck thinning, especially if Ironclad relies on playing many cards per turn.",
+      "options": [
+        {
+          "canonical_name": "Resist",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": -0.4,
+          "analysis": "Removing two weak cards is valuable, but adding Normality introduces a potentially severe restriction whenever it is in hand. Consider this mainly when the removals are especially important and you can reliably remove or exhaust the curse; this option was not selected in the recorded encounter.",
+          "observed_rewards": [],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Enter Your Hole",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.25,
+          "analysis": "Enchanting a card with \u5b8c\u7f8e\u5951\u5408 avoids taking Normality, and the recorded choice cost no HP or gold. The enchantment's mechanics and target were not recorded, so its value remains uncertain; the later defeat does not establish that this choice was harmful.",
+          "observed_rewards": [
+            "\u5b8c\u7f8e\u5951\u5408"
+          ],
+          "sample_size": 1
+        }
+      ],
+      "episode_count": 1,
+      "confidence": 0.35,
+      "version": 1,
+      "created_at": 1791981518.325067,
+      "updated_at": 1791981518.325067
+    },
+    "NONUPEIPE:the ironclad": {
+      "guide_id": "89085fd66b74",
+      "event_id": "NONUPEIPE",
+      "character": "the ironclad",
+      "guide_text": "Beautiful Bracelet offers targeted deck improvement, Looming Fruit provides unconditional maximum-HP growth, and Diamond Diadem rewards turns with very few card plays. Choose based on your enchantment targets and typical turn length; the single observed Bracelet pick ended in defeat and does not establish a best option.",
+      "options": [
+        {
+          "canonical_name": "Beautiful Bracelet",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.25,
+          "analysis": "Enchanting three chosen cards with Swift 3 provides targeted improvement, but its value depends on the available cards. The relic was acquired without an immediate HP or gold change; enchantment targets were not recorded, and the eventual defeat limits outcome-based support.",
+          "observed_rewards": [
+            "Beautiful Bracelet"
+          ],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Looming Fruit",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.3,
+          "analysis": "A deterministic increase of 31 maximum HP offers substantial durability without requiring a particular play pattern. It was offered but not selected, so neither its actual HP change nor its effect on the run was observed.",
+          "observed_rewards": [
+            "Looming Fruit"
+          ],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Diamond Diadem",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.1,
+          "analysis": "Halving enemy damage can be powerful when the deck naturally plays two or fewer cards per turn. The restriction makes it less reliable for card-heavy turns, and this unchosen option has no observed performance evidence.",
+          "observed_rewards": [
+            "Diamond Diadem"
+          ],
+          "sample_size": 1
+        }
+      ],
+      "episode_count": 1,
+      "confidence": 0.3,
+      "version": 1,
+      "created_at": 1791981597.182033,
+      "updated_at": 1791981597.182033
+    },
+    "POTION_COURIER:the ironclad": {
+      "guide_id": "486e3ab1b838",
+      "event_id": "POTION_COURIER",
+      "character": "the ironclad",
+      "guide_text": "Grab Potions offers predictable Foul Potions with merchant-conversion value, but their combat damage also hits you; Ransack trades that certainty for one random Uncommon Potion. Only Ransack was selected in the recorded run, and its unidentified reward and subsequent defeat provide little evidence of either option's effectiveness.",
+      "options": [
+        {
+          "canonical_name": "Grab Potions",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.15,
+          "analysis": "Provides three Foul Potions, each dealing 12 damage to all players and enemies or yielding 100 Gold when thrown at the Merchant. Its value depends on potion capacity and merchant access, while combat use carries unavoidable self-damage; this option was not selected.",
+          "observed_rewards": [],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Ransack",
+          "stage_index": 0,
+          "variant_type": "random_from_pool",
+          "score": 0.05,
+          "analysis": "Provides one random Uncommon Potion, but the concrete roll was not recorded and HP and Gold remained unchanged. The run ended in defeat two floors later, leaving only weak evidence for the reward's practical value rather than establishing that this choice caused the loss.",
+          "observed_rewards": [],
+          "sample_size": 1
+        }
+      ],
+      "episode_count": 1,
+      "confidence": 0.25,
+      "version": 1,
+      "created_at": 1791981705.5963461,
+      "updated_at": 1791981705.5963461
+    },
+    "ROUND_TEA_PARTY:the ironclad": {
+      "guide_id": "e6295b64d896",
+      "event_id": "ROUND_TEA_PARTY",
+      "character": "the ironclad",
+      "guide_text": "Favor Pick a Fight when you can safely afford 11 HP: a random relic avoids Royal Poison's recurring combat-start damage. Enjoy Your Tea is mainly an emergency full heal, but this single defeated run has a choice/outcome mismatch, so the evidence is weak.",
+      "options": [
+        {
+          "canonical_name": "Enjoy Your Tea",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": -0.35,
+          "analysis": "The stated full heal trades immediate recovery for losing 4 HP at the start of every combat, making it unattractive unless healing is urgently needed. Although this option was recorded as selected, the actual result was 80\u219269 HP and Candelabra rather than Royal Poison, so the defeated run does not reliably establish its outcome.",
+          "observed_rewards": [
+            "Candelabra"
+          ],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Pick a Fight",
+          "stage_index": 0,
+          "variant_type": "random_from_pool",
+          "score": 0.2,
+          "analysis": "Paying 11 HP for a random relic is generally preferable when the HP loss is survivable, though the value depends on the roll. The logged HP loss and Candelabra acquisition fit this option's description, but the conflicting choice label prevents treating them as a confirmed sample.",
+          "observed_rewards": [],
+          "sample_size": 1
+        }
+      ],
+      "episode_count": 1,
+      "confidence": 0.3,
+      "version": 1,
+      "created_at": 1791981732.0913153,
+      "updated_at": 1791981732.0913153
+    },
+    "ZEN_WEAVER:the ironclad": {
+      "guide_id": "cd6d515714e4",
+      "event_id": "ZEN_WEAVER",
+      "character": "the ironclad",
+      "guide_text": "Breathing Techniques is most attractive when Ironclad regularly draws several expensive cards together; otherwise, adding two Enlightenments can dilute the deck. Emotional Awareness offers targeted deck cleanup at a steep price, but this single defeated run provides no verified removal or gold-spend evidence to establish its value.",
+      "options": [
+        {
+          "canonical_name": "Breathing Techniques",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.0,
+          "analysis": "The offered exchange is 50 Gold for two Enlightenments, which can enable hands containing multiple expensive cards but adds two situational skills. This option was not selected, and the available record does not establish whether the deck could exploit it.",
+          "observed_rewards": [
+            "Enlightenment",
+            "Enlightenment"
+          ],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Emotional Awareness",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.05,
+          "analysis": "Removing a weak card can improve draw quality, but 125 Gold is a substantial opportunity cost. Although selected, the recorded gold remained 203 and no removed card was identified; the eventual defeat leaves little evidence of realized benefit.",
+          "observed_rewards": [],
+          "sample_size": 1
+        },
+        {
+          "canonical_name": "Locked",
+          "stage_index": 0,
+          "variant_type": "fixed",
+          "score": 0.0,
+          "analysis": "This displayed option was unavailable because of insufficient Gold. Its underlying reward and price were not revealed, so it cannot be meaningfully evaluated.",
+          "observed_rewards": [],
+          "sample_size": 1
+        }
+      ],
+      "episode_count": 1,
+      "confidence": 0.28,
+      "version": 1,
+      "created_at": 1791981780.6774075,
+      "updated_at": 1791981780.6774075
     }
   }
 }
